@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Recipies and Restaurants</title>
-		<link rel="stylesheet" href="./assets/style/style.css" />
-		<link
-			rel="stylesheet"
-			href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-		/>
-	</head>
 
-	<body>
-		<!-- display flex row -->
-		<header class="top-bar">
-			<div class="top-bar-left">
-				<ul class="dropdown menu" data-dropdown-menu>
-					<li class="menu-text">Site Title</li>
-					<li>
-						<a href="#">One</a>
-						<ul class="menu vertical">
-							<li><a href="#">One</a></li>
-							<li><a href="#">Two</a></li>
-							<li><a href="#">Three</a></li>
-						</ul>
-					</li>
-					<!-- <li><a href="#">Two</a></li>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Recipies and Restaurants</title>
+	<link rel="stylesheet" href="./assets/style/style.css" />
+	<link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css" />
+</head>
+
+<body>
+	<!-- display flex row -->
+	<header class="top-bar">
+		<div class="top-bar-left">
+			<ul class="dropdown menu" data-dropdown-menu>
+				<li class="menu-text">Site Title</li>
+				<li>
+					<a href="#">One</a>
+					<ul class="menu vertical">
+						<li><a href="#">One</a></li>
+						<li><a href="#">Two</a></li>
+						<li><a href="#">Three</a></li>
+					</ul>
+				</li>
+				<!-- <li><a href="#">Two</a></li>
 					<li><a href="#">Three</a></li> -->
-				</ul>
-			</div>
-			<div class="top-bar-right">
-				<ul class="menu">
-					<li><input type="search" id="userInput" placeholder="Search" /></li>
-					<li>
-						<button type="button" id="search" class="button">Search</button>
-					</li>
-				</ul>
-				<!-- Diet Restrictions section -->
-				<!-- <ul class="dropdown menu" data-dropdown-menu>
+			</ul>
+		</div>
+		<div class="top-bar-right">
+			<ul class="menu">
+				<li><input type="search" id="userInput" placeholder="Search" /></li>
+				<li>
+					<button type="button" id="search" class="button">Search</button>
+				</li>
+			</ul>
+			<!-- Diet Restrictions section -->
+			<!-- <ul class="dropdown menu" data-dropdown-menu>
 					<li>
 						<a href="#">diet</a>
 						<ul class="menu vertical">
@@ -47,36 +45,73 @@
 							<li><a href="#">Three</a></li>
 						</ul>
 					</li> -->
-				<label
-					>Dietary Requirements
-					<select multiple>
-						<option value="Dairy Free">Dairy Free</option>
-						<option value="Gluten Free">Gluten Free</option>
-						<option value="narcho">Nachos</option>
-						<option value="hardball">Hardball</option>
-					</select>
-				</label>
-			</div>
-		</header>
-		<!-- main body of site -->
-		<div class="row">
+			<label>Dietary Requirements
+				<select multiple>
+					<option value="Dairy Free">Dairy Free</option>
+					<option value="Gluten Free">Gluten Free</option>
+					<option value="narcho">Nachos</option>
+					<option value="hardball">Hardball</option>
+				</select>
+			</label>
+		</div>
+	</header>
+	<!-- main body of site -->
+	<div id="pageContainer">
+		<main class="row mainWidth">
 			<!-- recipe section -->
-			<div class="columns medium-8 test">
-				<h1>Recipies</h1>
+			<div class="columns medium-8 mainLeftSide">
+				<section class="borderControl" id='videoContainer'>
+					<video src=""></video>
+				</section>
+				<section id='suggestedRecipeContainer'>
+					<h2>Suggested Recipes...</h2>
+					<table class="hover">
+						<thead>
+							<tr>
+								<th width="200">Top Recipes:</th>
+								<th>Prep/Cook Time</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Content Goes Here</td>
+								<td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+
+							</tr>
+							<tr>
+								<td>Content Goes Here</td>
+								<td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+								</td>
+
+							</tr>
+							<tr>
+								<td>Content Goes Here</td>
+								<td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+					<a href="#features" class="button">See More +</a>
+				</section>
+
 			</div>
 			<!-- restaurant lookup -->
-			<div class="columns medium-4 test">
-				<h1>Restaurants</h1>
+			<div class="columns medium-4 borderControl mainBody">
+				<h6>Don't want to cook? Type your zipcode below: </h6>
+				<input type="number" placeholder="Zipcode" />
+				<a class="button small expanded buttonColor" href="#">Wow, Small Expand</a>
 			</div>
-		</div>
+		</main>
+		
+		<footer class="columns medium-12" id="footer"><hr style="height:2px; background-color: rgba(13, 147, 209, 0.486);">footer</footer>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+		$(document).foundation();
+	</script>
+	<script src="./assets/script/script.js"></script>
+</body>
 
-		<footer class="columns medium-12 test">footer</footer>
-
-		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-		<script src="./assets/script/script.js"></script>
-	</body>
 </html>
