@@ -10,7 +10,7 @@ function Getrestaurants(lat,lon) {
         console.log(data);
     });
 }
-
+// Finds restaurants based on zipcode search
 function Ziprestaurants(zipcode) {
     fetch('https://api.documenu.com/v2/restaurants/zip_code/'+zipcode+'?key=5162cc5a0a88bba9f4483c32d07d87f7&size=10')
     .then(response => {
@@ -21,7 +21,7 @@ function Ziprestaurants(zipcode) {
     });
 }
 
-
+// assigns geolocaion variables calls API function
 function success(pos) {
     let latitude = pos.coords.latitude
     console.log(latitude)
@@ -29,11 +29,12 @@ function success(pos) {
     console.log(longitude)  
     Getrestaurants(latitude,longitude)  
 }
-
+// If user doesnt share location show zip search on website
 function error(){
     // display zipcode search if location not granted
     zip = '53094'
     Ziprestaurants(zip)
 }
 
+// asks for user location when loadin site
 navigator.geolocation.getCurrentPosition(success, error)
