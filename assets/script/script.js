@@ -1,12 +1,12 @@
 // VARIABLES //
 let zip = "";
-var searchTermsEl = document.querySelector("#userInput"); // Search terms to be included in the search.  Entered in search box by user
-var dFreeEl = document.querySelector("#dairy-free"); // This option is selected or not by the user
-var eFreeEl = document.querySelector("#egg-free"); // This option is selected or not by the user
-var gFreeEl = document.querySelector("#gluten-free"); // This option is selected or not by the user
-var wFreeEl = document.querySelector("#wheat-free"); // This option is selected or not by the user
-var pFreeEl = document.querySelector("#peanut-free"); // This option is selected or not by the user
-var submitButtonEl = document.querySelector("#search"); // This is the Search Button
+var searchTermsEl = document.getElementById('userInput'); // Search terms to be included in the search.  Entered in search box by user
+var dFreeEl = document.getElementById('dairy'); // This option is selected or not by the user
+var eFreeEl = document.getElementById('egg'); // This option is selected or not by the user
+var gFreeEl = document.getElementById('gluten'); // This option is selected or not by the user
+var wFreeEl = document.getElementById('wheat'); // This option is selected or not by the user
+var pFreeEl = document.getElementById('peanut'); // This option is selected or not by the user
+var submitButtonEl = document.querySelector("#searchButton"); // This is the Search Button
 
 
 
@@ -32,30 +32,30 @@ function getRecipes(){
     } else { stIndicator = "q="};
 
     // Check for dairy-free
-    if(dFreeEl.selected){
+    if(dFreeEl.checked == true){
         console.log("dairy-free is selected");
         dfIndicator = "&health=dairy-free";
     }
 
     // Check for egg-free
-    if(eFreeEl.selected){
+    if(eFreeEl.checked == true){
         console.log("egg-free is selected");
         efIndicator = "&health=egg-free";
     }
 
     // Check for gluten-free
-    if(gFreeEl.selected){
+    if(gFreeEl.checked == true){
         console.log("gluten-free is selected");
         gfIndicator = "&health=gluten-free";
     }
 
     // Check for wheat-free
-    if(wFreeEl.selected){
+    if(wFreeEl.checked == true){
         console.log("wheat-free is selected");
         wfIndicator = "&health=wheat-free";
     }
     // Check for peanut-free
-    if(pFreeEl.selected){
+    if(pFreeEl.checked == true){
         console.log("peanut-free is selected");
         pfIndicator = "&health=peanut-free";
     }
