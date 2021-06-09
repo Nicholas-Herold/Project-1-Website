@@ -1,31 +1,75 @@
 // VARIABLES //
 let zip = "";
-var mainIngredientEl = document.querySelector("#userInput"); // Main ingredient to be included in the search.  Entered in search box by user
+var searchTermsEl = document.querySelector("#userInput"); // Search terms to be included in the search.  Entered in search box by user
 var dFreeEl = document.querySelector("#dairy-free"); // This option is selected or not by the user
+var eFreeEl = document.querySelector("#egg-free"); // This option is selected or not by the user
 var gFreeEl = document.querySelector("#gluten-free"); // This option is selected or not by the user
+var wFreeEl = document.querySelector("#wheat-free"); // This option is selected or not by the user
+var pFreeEl = document.querySelector("#peanut-free"); // This option is selected or not by the user
 var submitButtonEl = document.querySelector("#search"); // This is the Search Button
 
 
 
-//THIS WILL RETURN ONE RECIPE "ON SEARCH" WITH AN INGREDIENT IN THE SEARCH BOX.  STILL WORKING ON DAIRY AND GLUTEN-FREE OPTIONS
-// Finds recipes based on 1 main ingredient (#userInput) and no/one/two .restrictions (#dairy-free and #gluten-free)
+
+// THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
+// MAY CONSIDER ADDING 'SUGGESTED SEARCH TERMS' SUCH AS "INSTANT POT POTATOES", "INDIAN CHICKEN" OR "BEEF AND ONIONS"
+// I ADDED ADDITIONAL HEALTH RESTRICTION OPTIONS
+// Finds recipes based on search terms (#userInput) and varied restrictions
 function getRecipes(){
     console.log("getRecipes");
-    if(mainIngredientEl.value !==""){ // If user entered an ingredient
-        console.log(mainIngredientEl.value);
-        fetch ('http://api.edamam.com/search?q=' + mainIngredientEl.value + '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb&from=0&to=2&imageSize=THUMBNAIL')
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (recipedata) {
-                console.log(recipedata);
-                })
-            }
-        })
 
-    } else {
-        console.log("no ingredient");
+    var dfIndicator = "";
+    var efIndicator = "";
+    var gfIndicator = "";
+    var wfIndicator = "";
+    var pfIndicator = "";
+
+
+    // Check for search terms
+    if(searchTermsEl.value !=="") {
+        console.log(searchTermsEl.value);
+        var stIndicator = "q=" + searchTermsEl.value;
+    } else { stIndicator = "q="};
+
+    // Check for dairy-free
+    if(dFreeEl.selected){
+        console.log("dairy-free is selected");
+        dfIndicator = "&health=dairy-free";
     }
-}
+
+    // Check for egg-free
+    if(eFreeEl.selected){
+        console.log("egg-free is selected");
+        efIndicator = "&health=egg-free";
+    }
+
+    // Check for gluten-free
+    if(gFreeEl.selected){
+        console.log("gluten-free is selected");
+        gfIndicator = "&health=gluten-free";
+    }
+
+    // Check for wheat-free
+    if(wFreeEl.selected){
+        console.log("wheat-free is selected");
+        wfIndicator = "&health=wheat-free";
+    }
+    // Check for peanut-free
+    if(pFreeEl.selected){
+        console.log("peanut-free is selected");
+        pfIndicator = "&health=peanut-free";
+    }
+
+    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator +'&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb&from=0&to=2&imageSize=THUMBNAIL';
+    fetch (apiRecUrl)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function(recipedata) {
+            console.log(recipedata);
+            })
+        }
+    })
+} // end of getRecipes
 
     
 
