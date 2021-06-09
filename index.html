@@ -11,42 +11,43 @@
 </head>
 
 <body>
-	<!-- display flex row -->
-	<header class="top-bar">
-		<div class="top-bar-left">
-			<ul class="dropdown menu" data-dropdown-menu>
-				<li class="menu-text">Site Title</li>
+	<div class="row">
+		<div class="columns medium-6 title test">
+			<h1>Site Title</h1>
+			<ul class="vertical dropdown menu" data-dropdown-menu>
 				<li>
-					<a href="#">One</a>
-					<ul class="menu vertical">
-						<li><a href="#">One</a></li>
-						<li><a href="#">Two</a></li>
-						<li><a href="#">Three</a></li>
+					<a href="">Favorites</a>
+					<ul class="vertical menu nested">
+						<li><a href="#">Favorite 1</a></li>
+						<li><a href="#">Favorite 2</a></li>
+						<li><a href="#">Favorite 3</a></li>
 					</ul>
 				</li>
-				<!-- <li><a href="#">Two</a></li>
-					<li><a href="#">Three</a></li> -->
 			</ul>
 		</div>
-		<div class="top-bar-right">
-			<ul class="menu">
-				<li><input type="search" id="userInput" placeholder="Search" /></li>
-				<li>
-					<button type="button" id="search" class="button">Search</button>
-				</li>
-			</ul>
-			<!-- Diet Restrictions section -->
-			<label>Dietary Requirements
-				<select multiple>
-					<option value="Dairy Free" class="restrictions" id="dairy-free">Dairy Free</option>
-					<option value="Egg Free" class="restrictions" id="egg-free">Egg Free</option>
-					<option value="Gluten Free" class="restrictions" id="gluten-free">Gluten Free</option>
-					<option value="Wheat Free" class="restrictions" id="wheat-free">Wheat Free</option>
-					<option value="Peanut Free" class="restrictions" id="peanut-free">Peanut Free</option>
-				</select>
-			</label>
+		<div class="columns medium-6 test">
+			<div class="row">
+				<div class="colums search-bar">
+					<input type="text" id="userInput" placeholder="Search"/>
+					<button type="button" id="searchButton" class="button">Search</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="colums">
+					<input id="gluten" type="checkbox" name="" value="gluten"><label for="gluten">Gluten Free</label>
+					<input id="dairy" type="checkbox" name="" value="dairy"><label for="dairy">Dairy Free</label>
+					<input id="peanut" type="checkbox" name="" value=""><label for="">Peanut Free</label>
+					<input id="egg" type="checkbox" name="" value=""><label for="">Egg Free</label>
+					<input id="wheat" type="checkbox" name="" value=""><label for="">Wheat Free</label>
+				</div>
+			</div>
 		</div>
-	</header>
+	</div>
+
+
+
+
+
 	<!-- main body of site -->
 	<div id="pageContainer">
 		<main class="row mainWidth">
@@ -62,6 +63,7 @@
 							<tr>
 								<th width="200">Top Recipes:</th>
 								<th>Prep/Cook Time</th>
+								<a>sdfsdf</a>
 							</tr>
 						</thead>
 						<tbody>
