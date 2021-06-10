@@ -33,3 +33,7 @@
 	width: 100%;
 	height: 2.5rem;
 }
+
+p.nobottommargin {
+	margin-bottom:0 !important;
+}
