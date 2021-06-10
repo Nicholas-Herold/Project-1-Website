@@ -8,7 +8,8 @@ var wFreeEl = document.getElementById('wheat'); // This option is selected or no
 var pFreeEl = document.getElementById('peanut'); // This option is selected or not by the user
 var submitButtonEl = document.querySelector("#searchButton"); // This is the Search Button
 var recipeTableBody = document.getElementById('recipeList'); 
-
+var seeMoreRecBtn = document.getElementById('seeMoreRecipes');
+// var recipesFromAPI;
 
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
@@ -67,6 +68,7 @@ function getRecipes() {
             if (response.ok) {
                 response.json().then(function (recipedata) {
                     console.log(recipedata);
+                    // recipesFromAPI=recipedata;  //Trying to make api a global variable
                     suggestedRecipe(recipedata);
                 })
             }
@@ -75,20 +77,22 @@ function getRecipes() {
 
 //Start of suggest
 function suggestedRecipe(data) {
-    console.log(data.hits[0].recipe.cuisineType.toString());
+    // console.log(data.hits[0].recipe.cuisineType.toString());
     var recipeTable = '';
+    
     for(var i=0; i<4;i++){
-        var recipe = data.hits[i].recipe;
-        var recipeName = recipe.label;
-        var mealType = recipe.mealType.toString();
-        var recipeImage = recipe.image;
-        var cookTime = recipe.totalTime;
-        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Total Cook/Prep Time: '+ cookTime +'min'+'<br>'+mealType + '</td></tr>';
+        var item = data.hits[i];
+        var recipeName = item.recipe.label;
+        var recipeImage = item.recipe.image;
+        var cookYield = item.recipe.yield;
+        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
     recipeTableBody.innerHTML = recipeTable;
 }
 
+
 getRecipes();
+// console.log('api ' +recipesFromAPI);
 
 // Function finds list of restaurants in the area based on lat and lon
 function Getrestaurants(lat, lon) {
