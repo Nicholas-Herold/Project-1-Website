@@ -96,23 +96,28 @@ getRecipes();
 
 // Function finds list of restaurants in the area based on lat and lon
 function Getrestaurants(lat, lon) {
-    fetch('https://api.documenu.com/v2/restaurants/search/geo?key=5162cc5a0a88bba9f4483c32d07d87f7&lat=' + lat + '&lon=' + lon + '&distance=1&fullmenu')
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-        });
+
+    fetch('https://api.documenu.com/v2/restaurants/search/geo?key=5162cc5a0a88bba9f4483c32d07d87f7&lat='+ lat +'&lon='+lon+'&distance=1&fullmenu')
+    .then(response => {
+      return response.json();  
+    })
+    .then (data =>{
+        console.log(data);
+        ////
+        popRestList(data);
+    });
 }
 // Finds restaurants based on zipcode search
 function Ziprestaurants(zipcode) {
-    fetch('https://api.documenu.com/v2/restaurants/zip_code/' + zipcode + '?key=5162cc5a0a88bba9f4483c32d07d87f7&size=10')
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-        });
+    fetch('https://api.documenu.com/v2/restaurants/zip_code/'+zipcode+'?key=5162cc5a0a88bba9f4483c32d07d87f7&size=5')
+    .then(response => {
+      return response.json();
+    })
+    .then (data =>{
+        console.log(data);
+        popRestList(data);
+    });
+
 }
 
 // Assigns geolocation variables calls API function
@@ -131,6 +136,59 @@ function error() {
     Ziprestaurants(zip);
 }
 
+// This function uses the Restaurant API to create a list <divs> of 5 local restaurants
+function popRestList(data){
+    console.log(data);
+
+    var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
+    
+    // divsectionEL is the variable that represents the location in the HTML where the new div is created.  It is identified by #restsection
+    // divEl is the variable associated with the new div element.  It contains the restaurant name
+    // divElp is the variable associated with the p element containing the phone number that is attached to the div
+    // divEls is the variable associated with p element containing the street address that is attached to the div
+    // divElc is the variable associated with p element containing the city, state, zip info that is attached to the div
+
+    datarray.forEach(index => {
+   
+        console.log(datarray);
+        var divEl = document.createElement("div");
+        divEl.classList = "rName";
+        divEl.innerHTML = index.restaurant_name;
+        var divsectionEl = document.querySelector("#restsection");
+
+        var divElp = document.createElement("p");
+        divElp.classList = "rPhone nobottommargin";
+        divElp.innerHTML = index.restaurant_phone;
+
+        var divEls = document.createElement("p");
+        divEls.classList = "rStreet nobottommargin";
+        divEls.innerHTML = index.address.street;
+
+        var divElc = document.createElement("p");
+        divElc.classList = "rCity";
+        divElc.innerHTML = index.address.city + ", " + index.address.state + ", " + index.address.postal_code;
+
+        divEl.appendChild(divElp);
+        divEl.appendChild(divEls);
+        divEl.appendChild(divElc)
+        divsectionEl.appendChild(divEl);
+    })
+} // end of popRestList ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // asks for user location when loading site
 navigator.geolocation.getCurrentPosition(success, error);
 
@@ -140,4 +198,3 @@ submitButtonEl.addEventListener("click", getRecipes); // Listens for a click of 
 
 
 
-//NOTE: I ONLY RECEIVED A LIST OF RESTAURANTS WHEN I DECLINED THE GEOLOCATION

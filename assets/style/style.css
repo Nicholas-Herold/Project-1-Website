@@ -34,6 +34,9 @@
 	height: 2.5rem;
 }
 
+p.nobottommargin {
+	margin-bottom:0 !important;
+ 
 .recipeTable {
 	width: 100%;
 }
