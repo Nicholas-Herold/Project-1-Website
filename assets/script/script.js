@@ -11,14 +11,24 @@ var submitButtonE2 = document.getElementById('zipbtn');
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
 var ziperror = "";
+
 var divsectionEl = document.querySelector("#restsection");
+
 
 var recipeTableBody = document.getElementById('recipeList');
 var seeMoreRecBtn = document.getElementById('moreRec');
 var recListHeader = document.getElementById('recipeListHeader');
 var videoContainer = $('#videoContainer');
 var displayMoreRecipes = 10;
+
 var displayRestaurants = 5;
+
+//Input personal api info for sites
+var apiIDEdamam = 'e60d435c';
+var apiKeyEdamam = '18c34531a5ee1f4b51fad57248de2882';
+var apiKeyDocuMenu = 'a048f58582824f51ac9c1b6b4e500d9a';
+//orig key and id for Edamam '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb'
+//orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
 // MAY CONSIDER ADDING 'SUGGESTED SEARCH TERMS' SUCH AS "INSTANT POT POTATOES", "INDIAN CHICKEN" OR "BEEF AND ONIONS"
@@ -67,7 +77,7 @@ function getRecipes() {
         pfIndicator = "&health=peanut-free";
     }
 
-    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb&from=0&to=30&imageSize=THUMBNAIL';
+    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=' + apiIDEdamam+ '&app_key=' + apiKeyEdamam + '&from=0&to=30&imageSize=THUMBNAIL';
     console.log(apiRecUrl);
     fetch(apiRecUrl)
         .then(function (response) {
@@ -98,8 +108,14 @@ function suggestedRecipe(data, numberOfListItems) {
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
         var cookYield = item.recipe.yield;
-        searchModal = searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">Recipe Title</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>discription of recipe</p><a class="modal-link" href="">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
-        recipeTable += '<tr><td><img src="' + recipeImage + '"/></td><td><h3>' + searchModal + '</h3>Number of Servings: ' + cookYield + '</td></tr>';
+
+        link = item.recipe.url.toString();
+        cuisine = item.recipe.cuisineType.toString();
+        type = item.recipe.mealType.toString();
+        diet = item.recipe.dietLabels.toString();
+        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p><a class="modal-link" href="' + link + '">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        
+        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
     // recipeTableBody.innerHTML = recipeTable;
     renderTable(recipeTable);
@@ -134,15 +150,15 @@ getRecipes();
 // Function finds list of restaurants in the area based on lat and lon
 function Getrestaurants(lat, lon) {
 
-    fetch('https://api.documenu.com/v2/restaurants/search/geo?key=5162cc5a0a88bba9f4483c32d07d87f7&lat=' + lat + '&lon=' + lon + '&distance=1&fullmenu')
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            ////
-            popRestList(data);
-        });
+    fetch('https://api.documenu.com/v2/restaurants/search/geo?key='+ apiKeyDocuMenu +'&lat='+ lat +'&lon='+lon+'&distance=1&fullmenu')
+    .then(response => {
+      return response.json();  
+    })
+    .then (data =>{
+        console.log(data);
+        ////
+        popRestList(data);
+    });
 }
 
 // Finds restaurants based on zipcode search
@@ -173,11 +189,10 @@ function success(pos) {
 
 // If user doesn't share location show zip search on website
 function error() {
-    ziptxt.style.display = 'block';
-    zipinput.style.display = 'block';
-    zipbtn.style.display = 'block';
-    document.getElementById("autolocat").style.display = "none";
-
+    ziptxt.style.display='block';
+    zipinput.style.display='block';
+    zipbtn.style.display='block';
+    document.getElementById("autolocat").style.display="none";
 
 }
 
@@ -198,19 +213,21 @@ function popRestList(data) {
     // divEls is the variable associated with p element containing the street address that is attached to the div
     // divElc is the variable associated with p element containing the city, state, zip info that is attached to the div
     //divEla is the variable associated with p element containing restaurant website
-    if (datarray.length == 0) {
-        document.querySelector("#restsection").innerHTML = "No Results for this area"
+    if (datarray.length == 0){
+        var divsectionEl = document.querySelector("#restsection");
+        divsectionEl.classList.remove("hide");
+        document.querySelector("#restsection").innerHTML="No Results for this area"
         error();
     }
 
 
     divsectionEl.innerHTML = '';
     for (var i = 0; i < displayRestaurants; i++) {
-
         console.log(datarray);
         var divEl = document.createElement("div");
         divEl.classList = "rName";
         divEl.innerHTML = datarray[i].restaurant_name;
+
 
         var divElp = document.createElement("p");
         divElp.classList = "rPhone nobottommargin";
@@ -261,13 +278,8 @@ function renderTable(modal) {
     $(document).foundation();
 }
 
-
 // asks for user location when loading site
 navigator.geolocation.getCurrentPosition(success, error);
 
 
 submitButtonEl.addEventListener("click", getRecipes); // Listens for a click of the search button
-
-
-
-

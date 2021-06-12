@@ -48,13 +48,28 @@ p.nobottommargin {
 }
 
 .rName {
-	background-color: rgba(233, 238, 240, 0.897) !important;
+	background-color: rgba(210, 214, 216, 0.897) !important;
 }
 
 .recipeTable {
 	width: 100% !important;
 }
 
+
 #moreRest {
 	display: none;
+
+.hide {
+	display: none;
+}
+
+.recipe-modal {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+}
+.modal-image {
+	max-width: 40%;
+  	height: auto;
 }
