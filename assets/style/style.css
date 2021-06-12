@@ -58,3 +58,14 @@ p.nobottommargin {
 .hide {
 	display: none;
 }
+
+.recipe-modal {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+}
+.modal-image {
+	max-width: 40%;
+  	height: auto;
+}
