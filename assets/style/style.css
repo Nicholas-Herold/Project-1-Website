@@ -40,12 +40,17 @@
 #ziptxt {
 	display: none;
 }
-#restbtn {
+#zipbtn {
 	display: none;
 }
 p.nobottommargin {
 	margin-bottom: 0 !important;
 }
+
+.rName {
+	background-color: rgba(233, 238, 240, 0.897) !important;
+}
+
 .recipeTable {
-	width: 100%;
+	width: 100% !important;
 }

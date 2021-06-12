@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="columns medium-6 title test">
 				<h1>Site Title</h1>
-				<ul class="vertical dropdown menu" data-dropdown-menu>
+				<!-- <ul class="vertical dropdown menu" data-dropdown-menu>
 					<li>
 						<a href="">Favorites</a>
 						<ul class="vertical menu nested">
@@ -26,13 +26,17 @@
 							<li><a href="#">Favorite 3</a></li>
 						</ul>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 			<div class="columns medium-6 test">
 				<div class="row">
 					<div class="colums search-bar">
 						<input type="text" id="userInput" placeholder="Search" />
-						<button type="button" id="searchButton" class="button moreRecipesBtn">
+						<button
+							type="button"
+							id="searchButton"
+							class="button moreRecipesBtn"
+						>
 							Search
 						</button>
 					</div>
@@ -80,7 +84,9 @@
 							</thead>
 							<tbody id="recipeList"></tbody>
 						</table>
-						<button type="button" class="button moreRecipesBtn" id="moreRec">See More +</button>
+						<button type="button" class="button moreRecipesBtn" id="moreRec">
+							See More +
+						</button>
 					</section>
 				</div>
 				<!-- restaurant lookup -->
@@ -90,7 +96,11 @@
 						Don't want to cook? Look below for restaurants near you.
 					</h6>
 					<input id="zipinput" type="number" placeholder="Zipcode" />
-					<a id="restbtn" class="button small expanded buttonColor" href="#"
+					<a
+						id="zipbtn"
+						class="button small expanded buttonColor"
+						href="#"
+						onclick="Ziprestaurants()"
 						>Wow, Small Expand</a
 					>
 				</div>
