@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Recipies and Restaurants</title>
+		<title>Good Eats</title>
 		<link rel="stylesheet" href="./assets/style/style.css" />
 		<link
 			rel="stylesheet"
@@ -15,20 +15,16 @@
 
 	<body>
 		<div class="row">
-			<div class="columns medium-6 title test">
-				<h1>Site Title</h1>
-				<!-- <ul class="vertical dropdown menu" data-dropdown-menu>
-					<li>
-						<a href="">Favorites</a>
-						<ul class="vertical menu nested">
-							<li><a href="#">Favorite 1</a></li>
-							<li><a href="#">Favorite 2</a></li>
-							<li><a href="#">Favorite 3</a></li>
-						</ul>
-					</li>
-				</ul> -->
+
+			<div class="columns medium-1">
+				<img src="./assets/images/good_eats.png" alt="Empty plate and silverware" style="width: 100px"> 
 			</div>
-			<div class="columns medium-6 test">
+
+			<div class="columns medium-5 title">
+				<h1>Good Eats</h1>
+			</div>
+
+			<div class="columns medium-6">
 				<div class="row">
 					<div class="colums search-bar">
 						<input type="text" id="userInput" placeholder="Search" />
@@ -109,6 +105,7 @@
 				<div class="columns medium-4 borderControl mainBody none hide" id="restsection">
 					<!-- id="restsection" is when creating the restaurant divs -->
 				</div>
+				
 			</main>
 
 			<!-- footer including recipe api attribute -->
@@ -116,12 +113,13 @@
 				<hr style="height: 2px; background-color: rgba(13, 147, 209, 0.486)" />
 				<div id="edamam-badge" data-color="white"></div>
 			</footer>
+			
 		</div>
+
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
+		<script> $(document).foundation(); </script>
 		<script src="./assets/script/script.js"></script>
+
 	</body>
 </html>
