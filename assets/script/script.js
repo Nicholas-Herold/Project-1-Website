@@ -11,10 +11,10 @@ var submitButtonE2 = document.getElementById('restbtn');
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
 var recipeTableBody = document.getElementById('recipeList'); 
-// var moreRecBtns = document.querySelectorAll('.moreRecipesBtn');
 var seeMoreRecBtn = document.getElementById('moreRec');
+var recListHeader = document.getElementById('recipeListHeader');
 var videoContainer = $('#videoContainer');
-var recipesFromAPI;
+var displayMoreRecipes = 10;
 
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
@@ -66,21 +66,20 @@ function getRecipes() {
         pfIndicator = "&health=peanut-free";
     }
 
-    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb&from=0&to=8&imageSize=THUMBNAIL';
+    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb&from=0&to=30&imageSize=THUMBNAIL';
     console.log(apiRecUrl);
     fetch(apiRecUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (recipedata) {
                     // console.log(recipedata);
-                    // if(seeMoreRecBtn.clicked == true || submitButtonEl.clicked == true){
-                    //     createSeeMoreOrSearchRecipe(recipedata);
-                        seeMoreRecBtn.addEventListener('click', () =>
-                    createSeeMoreOrSearchRecipe(recipedata));
-                    submitButtonEl.addEventListener('click', () =>
-                    createSeeMoreOrSearchRecipe(recipedata));
+                    seeMoreRecBtn.addEventListener('click', () =>
+                    createSeeMoreRecipeList(recipedata));
+                    submitButtonEl.addEventListener('click', function(){
+                        createSearchRecipe(recipedata)
+                    } );
             
-                      suggestedRecipe(recipedata);  
+                    suggestedRecipe(recipedata, 5);  
                     
                     
                 })
@@ -88,12 +87,12 @@ function getRecipes() {
         })
 } // end of getRecipes
 
-//Start of suggest
-function suggestedRecipe(data) {
+//Create suggested recipe list
+function suggestedRecipe(data, numberOfListItems) {
     // console.log(data.hits[0].recipe.cuisineType.toString());
     var recipeTable = '';
     
-    for(var i=0; i<4;i++){
+    for(var i=0; i<numberOfListItems;i++){
         var item = data.hits[i];
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
@@ -103,23 +102,28 @@ function suggestedRecipe(data) {
     recipeTableBody.innerHTML = recipeTable;
 }
 
-function createSeeMoreOrSearchRecipe(data){
+//Add more items to recipe list
+function createSeeMoreRecipeList(data){
     $('#videoContainer').css('display', 'none');
-    var recipeTable = '';
-    console.log(data);
-    for(var i=0; i<8;i++){
-        var item = data.hits[i];
-        var recipeName = item.recipe.label;
-        var recipeImage = item.recipe.image;
-        var cookYield = item.recipe.yield;
-        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
+    if(displayMoreRecipes >= 30){
+       seeMoreRecBtn.style.display = 'none'; 
     }
-    recipeTableBody.innerHTML = recipeTable;
+    suggestedRecipe(data, displayMoreRecipes);
+    displayMoreRecipes +=10;
 }
 
+//Create search list for top results based on user criteria
+function createSearchRecipe(data){
+    recListHeader.textContent = 'Top Results'
+    displayMoreRecipes = 10;
+    suggestedRecipe(data, displayMoreRecipes);
+    seeMoreRecBtn.addEventListener('click', () =>
+    createSeeMoreRecipeList(data));
+}
 
+//Run initial recipe API call
 getRecipes();
-// console.log('api ' +recipesFromAPI);
+
 
 // Function finds list of restaurants in the area based on lat and lon
 function Getrestaurants(lat, lon) {
