@@ -212,7 +212,7 @@ function popRestList(data) {
         error();
     }
 
-
+    divsectionEl.classList.remove("hide");
     divsectionEl.innerHTML = '';
     for (var i = 0; i < displayRestaurants; i++) {
         console.log(datarray);
