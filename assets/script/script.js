@@ -12,8 +12,6 @@ var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
 var ziperror = "";
 
-var divsectionEl = document.querySelector("#restsection");
-
 
 var recipeTableBody = document.getElementById('recipeList');
 var seeMoreRecBtn = document.getElementById('moreRec');
@@ -199,7 +197,7 @@ function error() {
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
 function popRestList(data) {
     console.log(data);
-
+    var divsectionEl = document.querySelector("#restsection");
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
 
     // divsectionEL is the variable that represents the location in the HTML where the new div is created.  It is identified by #restsection
@@ -209,7 +207,6 @@ function popRestList(data) {
     // divElc is the variable associated with p element containing the city, state, zip info that is attached to the div
     //divEla is the variable associated with p element containing restaurant website
     if (datarray.length == 0){
-        var divsectionEl = document.querySelector("#restsection");
         divsectionEl.classList.remove("hide");
         document.querySelector("#restsection").innerHTML="No Results for this area"
         error();
