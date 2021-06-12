@@ -97,9 +97,11 @@ function suggestedRecipe(data) {
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
         var cookYield = item.recipe.yield;
-        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
+        searchModal = searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">Recipe Title</h1><img class="modal-image" src="' +recipeImage+ '" alt=""><p>discription of recipe</p><a class="modal-link" href="">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
-    recipeTableBody.innerHTML = recipeTable;
+    // recipeTableBody.innerHTML = recipeTable;
+    renderTable(recipeTable);
 }
 
 function createSeeMoreOrSearchRecipe(data){
@@ -111,9 +113,11 @@ function createSeeMoreOrSearchRecipe(data){
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
         var cookYield = item.recipe.yield;
-        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
+        searchModal = searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">Recipe Title</h1><img class="modal-image" src="' +recipeImage+ '" alt=""><p>discription of recipe</p><a class="modal-link" href="">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
-    recipeTableBody.innerHTML = recipeTable;
+    // recipeTableBody.innerHTML = recipeTable;
+    renderTable(recipeTable);
 }
 
 
@@ -214,7 +218,10 @@ function popRestList(data){
     })
 } // end of popRestList ()
 
-
+function renderTable(modal) {
+    $('#recipeList').html(modal);
+    $(document).foundation();
+}
 
 
 
