@@ -11,8 +11,10 @@ var submitButtonE2 = document.getElementById('restbtn');
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
 var recipeTableBody = document.getElementById('recipeList'); 
-var seeMoreRecBtn = document.getElementById('seeMoreRecipes');
-// var recipesFromAPI;
+// var moreRecBtns = document.querySelectorAll('.moreRecipesBtn');
+var seeMoreRecBtn = document.getElementById('moreRec');
+var videoContainer = $('#videoContainer');
+var recipesFromAPI;
 
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
@@ -70,9 +72,17 @@ function getRecipes() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (recipedata) {
-                    console.log(recipedata);
-                    // recipesFromAPI=recipedata;  //Trying to make api a global variable
-                    suggestedRecipe(recipedata);
+                    // console.log(recipedata);
+                    // if(seeMoreRecBtn.clicked == true || submitButtonEl.clicked == true){
+                    //     createSeeMoreOrSearchRecipe(recipedata);
+                        seeMoreRecBtn.addEventListener('click', () =>
+                    createSeeMoreOrSearchRecipe(recipedata));
+                    submitButtonEl.addEventListener('click', () =>
+                    createSeeMoreOrSearchRecipe(recipedata));
+            
+                      suggestedRecipe(recipedata);  
+                    
+                    
                 })
             }
         })
@@ -84,6 +94,20 @@ function suggestedRecipe(data) {
     var recipeTable = '';
     
     for(var i=0; i<4;i++){
+        var item = data.hits[i];
+        var recipeName = item.recipe.label;
+        var recipeImage = item.recipe.image;
+        var cookYield = item.recipe.yield;
+        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
+    }
+    recipeTableBody.innerHTML = recipeTable;
+}
+
+function createSeeMoreOrSearchRecipe(data){
+    $('#videoContainer').css('display', 'none');
+    var recipeTable = '';
+    console.log(data);
+    for(var i=0; i<8;i++){
         var item = data.hits[i];
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
