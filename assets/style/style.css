@@ -1,4 +1,4 @@
-:root{
+:root {
 	--blue: rgba(13, 147, 209, 0.897);
 }
 
@@ -22,10 +22,9 @@
 	padding: 3px;
 }
 
-.buttonColor{
+.buttonColor {
 	background-color: var(--blue);
 }
-
 
 #footer {
 	position: absolute;
@@ -34,9 +33,19 @@
 	height: 2.5rem;
 }
 
+#zipinput {
+	display: none;
+}
+
+#ziptxt {
+	display: none;
+}
+#restbtn {
+	display: none;
+}
 p.nobottommargin {
-	margin-bottom:0 !important;
- 
+	margin-bottom: 0 !important;
+}
 .recipeTable {
 	width: 100%;
 }
