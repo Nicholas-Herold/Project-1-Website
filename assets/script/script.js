@@ -10,6 +10,7 @@ var submitButtonEl = document.querySelector("#searchButton"); // This is the Sea
 var submitButtonE2 = document.getElementById('zipbtn');
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
+var ziperror = ""
 
 var recipeTableBody = document.getElementById('recipeList'); 
 // var moreRecBtns = document.querySelectorAll('.moreRecipesBtn');
@@ -173,7 +174,7 @@ function error() {
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
 function popRestList(data){
     console.log(data);
-
+    
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
     // if(datarray.length == 0){
     //     let warning = document.createElement('div');
@@ -186,8 +187,13 @@ function popRestList(data){
     // divElp is the variable associated with the p element containing the phone number that is attached to the div
     // divEls is the variable associated with p element containing the street address that is attached to the div
     // divElc is the variable associated with p element containing the city, state, zip info that is attached to the div
-
+    if (datarray.length == 0){
+        document.querySelector("#restsection").innerHTML="No Results for this area"
+        error();
+    }
     datarray.forEach(index => {
+
+
    
         console.log(datarray);
         var divEl = document.createElement("div");
