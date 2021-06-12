@@ -10,13 +10,19 @@ var submitButtonEl = document.querySelector("#searchButton"); // This is the Sea
 var submitButtonE2 = document.getElementById('zipbtn');
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
-var ziperror = ""
+var ziperror = "";
 
 var recipeTableBody = document.getElementById('recipeList'); 
 var seeMoreRecBtn = document.getElementById('moreRec');
 var recListHeader = document.getElementById('recipeListHeader');
 var videoContainer = $('#videoContainer');
 var displayMoreRecipes = 10;
+
+var apiIDEdamam = 'e60d435c';
+var apiKeyEdamam = '18c34531a5ee1f4b51fad57248de2882';
+var apiKeyDocuMenu = 'a048f58582824f51ac9c1b6b4e500d9a';
+//orig key and id for Edamam '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb'
+//orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
 
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
@@ -66,7 +72,7 @@ function getRecipes() {
         pfIndicator = "&health=peanut-free";
     }
 
-    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb&from=0&to=30&imageSize=THUMBNAIL';
+    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=' + apiIDEdamam+ '&app_key=' + apiKeyEdamam + '&from=0&to=30&imageSize=THUMBNAIL';
     console.log(apiRecUrl);
     fetch(apiRecUrl)
         .then(function (response) {
@@ -131,7 +137,7 @@ getRecipes();
 // Function finds list of restaurants in the area based on lat and lon
 function Getrestaurants(lat, lon) {
 
-    fetch('https://api.documenu.com/v2/restaurants/search/geo?key=5162cc5a0a88bba9f4483c32d07d87f7&lat='+ lat +'&lon='+lon+'&distance=1&fullmenu')
+    fetch('https://api.documenu.com/v2/restaurants/search/geo?key='+ apiKeyDocuMenu +'&lat='+ lat +'&lon='+lon+'&distance=1&fullmenu')
     .then(response => {
       return response.json();  
     })
