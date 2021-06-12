@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Recipies and Restaurants</title>
-		<link rel="stylesheet" href="./assets/style/style.css" />
-		<link
-			rel="stylesheet"
-			href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-		/>
-		<script src="https://developer.edamam.com/attribution/badge.js"></script>
-	</head>
 
-	<body>
-		<div class="row">
-			<div class="columns medium-6 title test">
-				<h1>Site Title</h1>
-				<!-- <ul class="vertical dropdown menu" data-dropdown-menu>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Recipies and Restaurants</title>
+	<link rel="stylesheet" href="./assets/style/style.css" />
+	<link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css" />
+	<script src="https://developer.edamam.com/attribution/badge.js"></script>
+</head>
+
+<body>
+	<div class="row">
+		<div class="columns medium-6 title test">
+			<h1>Site Title</h1>
+			<!-- <ul class="vertical dropdown menu" data-dropdown-menu>
 					<li>
 						<a href="">Favorites</a>
 						<ul class="vertical menu nested">
@@ -27,101 +25,86 @@
 						</ul>
 					</li>
 				</ul> -->
-			</div>
-			<div class="columns medium-6 test">
-				<div class="row">
-					<div class="colums search-bar">
-						<input type="text" id="userInput" placeholder="Search" />
-						<button
-							type="button"
-							id="searchButton"
-							class="button moreRecipesBtn"
-						>
-							Search
-						</button>
-					</div>
+		</div>
+		<div class="columns medium-6 test">
+			<div class="row">
+				<div class="colums search-bar">
+					<input type="text" id="userInput" placeholder="Search" />
+					<button type="button" id="searchButton" class="button moreRecipesBtn">
+						Search
+					</button>
 				</div>
-				<div class="row">
-					<div class="colums">
-						<input id="gluten" type="checkbox" name="" value="gluten" /><label
-							for="gluten"
-							>Gluten Free</label
-						>
-						<input id="dairy" type="checkbox" name="" value="dairy" /><label
-							for="dairy"
-							>Dairy Free</label
-						>
-						<input id="peanut" type="checkbox" name="" value="" /><label for=""
-							>Peanut Free</label
-						>
-						<input id="egg" type="checkbox" name="" value="" /><label for=""
-							>Egg Free</label
-						>
-						<input id="wheat" type="checkbox" name="" value="" /><label for=""
-							>Wheat Free</label
-						>
-					</div>
+			</div>
+			<div class="row">
+				<div class="colums">
+					<input id="gluten" type="checkbox" name="" value="gluten" /><label for="gluten">Gluten Free</label>
+					<input id="dairy" type="checkbox" name="" value="dairy" /><label for="dairy">Dairy Free</label>
+					<input id="peanut" type="checkbox" name="" value="" /><label for="">Peanut Free</label>
+					<input id="egg" type="checkbox" name="" value="" /><label for="">Egg Free</label>
+					<input id="wheat" type="checkbox" name="" value="" /><label for="">Wheat Free</label>
 				</div>
 			</div>
 		</div>
+	</div>
+  
+	<!-- main body of site -->
+	<div id="pageContainer">
+		<main class="row mainWidth">
+			<!-- recipe section -->
+			<div class="columns medium-8 mainLeftSide">
+				<section class="borderControl" id="videoContainer">
+					<video src=""></video>
+				</section>
+				<section id="suggestedRecipeContainer">
+					<table class="hover recipeTable">
+						<thead>
+							<tr>
+								<th width="100"></th>
+								<th>
+									<h2 id='recipeListHeader'>Suggested Recipes</h2>
+								</th>
+								<!-- <a>sdfsdf</a> -->
+							</tr>
+						</thead>
+						<tbody id="recipeList"></tbody>
+					</table>
+					<button type="button" class="button moreRecipesBtn" id="moreRec">
+						See More +
+					</button>
+				</section>
+			</div>
+			<!-- restaurant lookup -->
+			<div id="zipdiv" class="columns medium-4 borderControl mainBody">
+				<h6 id="ziptxt">Don't want to cook? Type your zipcode below:</h6>
+				<h6 id="autolocat">
+					Don't want to cook? Look below for restaurants near you.
+				</h6>
+				<input id="zipinput" type="number" placeholder="Zipcode" />
+				<a id="zipbtn" class="button small expanded buttonColor" href="#" onclick="Ziprestaurants()">Search</a>
+			</div>
 
-		<!-- main body of site -->
-		<div id="pageContainer">
-			<main class="row mainWidth">
-				<!-- recipe section -->
-				<div class="columns medium-8 mainLeftSide">
-					<section class="borderControl" id="videoContainer">
-						<video src=""></video>
-					</section>
-					<section id="suggestedRecipeContainer">
-						<table class="hover recipeTable">
-							<thead>
-								<tr>
-									<th width="100"></th>
-									<th><h2 id='recipeListHeader'>Suggested Recipes</h2></th>
-									<!-- <a>sdfsdf</a> -->
-								</tr>
-							</thead>
-							<tbody id="recipeList"></tbody>
-						</table>
-						<button type="button" class="button moreRecipesBtn" id="moreRec">
-							See More +
-						</button>
-					</section>
-				</div>
-				<!-- restaurant lookup -->
-				<div id="zipdiv" class="columns medium-4 borderControl mainBody">
-					<h6 id="ziptxt">Don't want to cook? Type your zipcode below:</h6>
-					<h6 id="autolocat">
-						Don't want to cook? Look below for restaurants near you.
-					</h6>
-					<input id="zipinput" type="text" placeholder="Zipcode" />
-					<a
-						id="zipbtn"
-						class="button small expanded buttonColor"
-						href="#"
-						onclick="Ziprestaurants()"
-						>Wow, Small Expand</a
-					>
-				</div>
 
-				<!-- This div contains a list of 5 restaurants generated by the API-->
-				<div class="columns medium-4 borderControl mainBody" id="restsection">
-					<!-- id="restsection" is when creating the restaurant divs -->
-				</div>
-			</main>
 
-			<!-- footer including recipe api attribute -->
-			<footer class="columns medium-12" id="footer">
-				<hr style="height: 2px; background-color: rgba(13, 147, 209, 0.486)" />
-				<div id="edamam-badge" data-color="white"></div>
-			</footer>
-		</div>
-		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-		<script src="./assets/script/script.js"></script>
-	</body>
+			<!-- This div contains a list of 5 restaurants generated by the API-->
+			<div class="columns medium-4 borderControl mainBody" id="restsection">
+				<!-- id="restsection" is when creating the restaurant divs -->
+			</div>
+
+
+		</main>
+
+		<!-- footer including recipe api attribute -->
+		<footer class="columns medium-12" id="footer">
+			<hr style="height: 2px; background-color: rgba(13, 147, 209, 0.486)" />
+			<div id="edamam-badge" data-color="white"></div>
+		</footer>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+		$(document).foundation();
+	</script>
+	<script src="./assets/script/script.js"></script>
+</body>
+
 </html>

@@ -55,6 +55,10 @@ p.nobottommargin {
 	width: 100% !important;
 }
 
+
+#moreRest {
+	display: none;
+
 .hide {
 	display: none;
 }

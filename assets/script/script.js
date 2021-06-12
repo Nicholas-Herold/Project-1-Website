@@ -12,18 +12,23 @@ var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
 var ziperror = "";
 
-var recipeTableBody = document.getElementById('recipeList'); 
+var divsectionEl = document.querySelector("#restsection");
+
+
+var recipeTableBody = document.getElementById('recipeList');
 var seeMoreRecBtn = document.getElementById('moreRec');
 var recListHeader = document.getElementById('recipeListHeader');
 var videoContainer = $('#videoContainer');
 var displayMoreRecipes = 10;
 
+var displayRestaurants = 5;
+
+//Input personal api info for sites
 var apiIDEdamam = 'e60d435c';
 var apiKeyEdamam = '18c34531a5ee1f4b51fad57248de2882';
 var apiKeyDocuMenu = 'a048f58582824f51ac9c1b6b4e500d9a';
 //orig key and id for Edamam '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb'
 //orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
-
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
 // MAY CONSIDER ADDING 'SUGGESTED SEARCH TERMS' SUCH AS "INSTANT POT POTATOES", "INDIAN CHICKEN" OR "BEEF AND ONIONS"
@@ -80,14 +85,14 @@ function getRecipes() {
                 response.json().then(function (recipedata) {
                     // console.log(recipedata);
                     seeMoreRecBtn.addEventListener('click', () =>
-                    createSeeMoreRecipeList(recipedata));
-                    submitButtonEl.addEventListener('click', function(){
+                        createSeeMoreRecipeList(recipedata));
+                    submitButtonEl.addEventListener('click', function () {
                         createSearchRecipe(recipedata)
-                    } );
-            
-                    suggestedRecipe(recipedata, 5);  
-                    
-                    
+                    });
+
+                    suggestedRecipe(recipedata, 5);
+
+
                 })
             }
         })
@@ -97,8 +102,8 @@ function getRecipes() {
 function suggestedRecipe(data, numberOfListItems) {
     // console.log(data.hits[0].recipe.cuisineType.toString());
     var recipeTable = '';
-    
-    for(var i=0; i<numberOfListItems;i++){
+
+    for (var i = 0; i < numberOfListItems; i++) {
         var item = data.hits[i];
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
@@ -117,23 +122,25 @@ function suggestedRecipe(data, numberOfListItems) {
 }
 
 //Add more items to recipe list
-function createSeeMoreRecipeList(data){
+function createSeeMoreRecipeList(data) {
     $('#videoContainer').css('display', 'none');
 
-    if(displayMoreRecipes >= 30){
-       seeMoreRecBtn.style.display = 'none'; 
+    if (displayMoreRecipes >= 30) {
+        seeMoreRecBtn.style.display = 'none';
     }
     suggestedRecipe(data, displayMoreRecipes);
-    displayMoreRecipes +=10;
+    displayMoreRecipes += 10;
 }
 
 //Create search list for top results based on user criteria
-function createSearchRecipe(data){
+function createSearchRecipe(data) {
     recListHeader.textContent = 'Top Results'
     displayMoreRecipes = 10;
+    displayRestaurants = 5;
+
     suggestedRecipe(data, displayMoreRecipes);
     seeMoreRecBtn.addEventListener('click', () =>
-    createSeeMoreRecipeList(data));
+        createSeeMoreRecipeList(data));
 }
 
 //Run initial recipe API call
@@ -156,28 +163,28 @@ function Getrestaurants(lat, lon) {
 
 // Finds restaurants based on zipcode search
 function Ziprestaurants() {
-    document.querySelector("#restsection").innerHTML=""
+    document.querySelector("#restsection").innerHTML = ""
     let zipcode = zipinput.value
     console.log(zipcode)
-    fetch('https://api.documenu.com/v2/restaurants/zip_code/'+zipcode+'?key=5162cc5a0a88bba9f4483c32d07d87f7&size=5')
-    .then(response => {
-      return response.json();
-    })
-    .then (data =>{
-        console.log(data);
-        popRestList(data);
-    });
+    fetch('https://api.documenu.com/v2/restaurants/zip_code/' + zipcode + '?key=5162cc5a0a88bba9f4483c32d07d87f7&size=10')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            popRestList(data);
+        });
 
 }
 
 // Assigns geolocation variables calls API function
 function success(pos) {
-    
+
     let latitude = pos.coords.latitude;
     let longitude = pos.coords.longitude;
-    
+
     Getrestaurants(latitude, longitude);
-   
+
 }
 
 // If user doesn't share location show zip search on website
@@ -186,12 +193,13 @@ function error() {
     zipinput.style.display='block';
     zipbtn.style.display='block';
     document.getElementById("autolocat").style.display="none";
+
 }
 
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
-function popRestList(data){
+function popRestList(data) {
     console.log(data);
-    
+
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
     // if(datarray.length == 0){
     //     let warning = document.createElement('div');
@@ -204,39 +212,66 @@ function popRestList(data){
     // divElp is the variable associated with the p element containing the phone number that is attached to the div
     // divEls is the variable associated with p element containing the street address that is attached to the div
     // divElc is the variable associated with p element containing the city, state, zip info that is attached to the div
+    //divEla is the variable associated with p element containing restaurant website
     if (datarray.length == 0){
         var divsectionEl = document.querySelector("#restsection");
         divsectionEl.classList.remove("hide");
         document.querySelector("#restsection").innerHTML="No Results for this area"
         error();
     }
-    datarray.forEach(index => {
 
+
+    divsectionEl.innerHTML = '';
+    for (var i = 0; i < displayRestaurants; i++) {
         console.log(datarray);
         var divEl = document.createElement("div");
         divEl.classList = "rName";
-        divEl.innerHTML = index.restaurant_name;
-        var divsectionEl = document.querySelector("#restsection");
-        divsectionEl.classList.remove("hide");
+        divEl.innerHTML = datarray[i].restaurant_name;
+
 
         var divElp = document.createElement("p");
         divElp.classList = "rPhone nobottommargin";
-        divElp.innerHTML = index.restaurant_phone;
+        divElp.innerHTML = datarray[i].restaurant_phone;
 
         var divEls = document.createElement("p");
         divEls.classList = "rStreet nobottommargin";
-        divEls.innerHTML = index.address.street;
+        divEls.innerHTML = datarray[i].address.street;
 
         var divElc = document.createElement("p");
-        divElc.classList = "rCity";
-        divElc.innerHTML = index.address.city + ", " + index.address.state + ", " + index.address.postal_code;
+        divElc.classList = "rCity nobottommargin";
+        divElc.innerHTML = datarray[i].address.city + ", " + datarray[i].address.state + ", " + datarray[i].address.postal_code;
+
+        var divEla = document.createElement('p');
+        divEla.textContent = 'No Website Available';
+        if( datarray[i].restaurant_website != " " && datarray[i].restaurant_website != ""){
+            divEla.innerHTML = "<a href='" + datarray[i].restaurant_website + "' target = '_blank'>Go to Website</a>";
+        }
 
         divEl.appendChild(divElp);
         divEl.appendChild(divEls);
-        divEl.appendChild(divElc)
+        divEl.appendChild(divElc);
+        divEl.appendChild(divEla);
         divsectionEl.appendChild(divEl);
-    })
+    }
+    // if (displayRestaurants < datarray.length) {
+    //     createSeeMoreBtn(data);
+    //     }
+    
 } // end of popRestList ()
+
+// function createSeeMoreBtn(data) {
+//     var SeeMoreBtn = document.createElement('button');
+//     SeeMoreBtn.classList = 'button';
+//     SeeMoreBtn.textContent = 'See More +';
+//     SeeMoreBtn.type = 'button';
+//     divsectionEl.appendChild(SeeMoreBtn);
+//     createSeeMoreBtn.click(seeMoreRestClick(data));
+// }
+
+// function seeMoreRestClick(data){
+//     displayRestaurants += 5;
+//     popRestList(data);
+// }
 
 function renderTable(modal) {
     $('#recipeList').html(modal);
