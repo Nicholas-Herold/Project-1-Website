@@ -212,13 +212,14 @@ function popRestList(data) {
         error();
     }
 
-    divsectionEl.classList.remove("hide");
+
     divsectionEl.innerHTML = '';
     for (var i = 0; i < displayRestaurants; i++) {
         console.log(datarray);
         var divEl = document.createElement("div");
         divEl.classList = "rName";
         divEl.innerHTML = datarray[i].restaurant_name;
+        divsectionEl.classList.remove("hide");
 
 
         var divElp = document.createElement("p");
