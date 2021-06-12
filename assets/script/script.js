@@ -7,9 +7,14 @@ var gFreeEl = document.getElementById('gluten'); // This option is selected or n
 var wFreeEl = document.getElementById('wheat'); // This option is selected or not by the user
 var pFreeEl = document.getElementById('peanut'); // This option is selected or not by the user
 var submitButtonEl = document.querySelector("#searchButton"); // This is the Search Button
+var submitButtonE2 = document.getElementById('restbtn');
+var ziptxt = document.getElementById('ziptxt');
+var zipinput = document.getElementById('zipinput');
 var recipeTableBody = document.getElementById('recipeList'); 
-var seeMoreRecBtn = document.getElementById('seeMoreRecipes');
-// var recipesFromAPI;
+// var moreRecBtns = document.querySelectorAll('.moreRecipesBtn');
+var seeMoreRecBtn = document.getElementById('moreRec');
+var videoContainer = $('#videoContainer');
+var recipesFromAPI;
 
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
@@ -65,9 +70,17 @@ function getRecipes() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (recipedata) {
-                    console.log(recipedata);
-                    // recipesFromAPI=recipedata;  //Trying to make api a global variable
-                    suggestedRecipe(recipedata);
+                    // console.log(recipedata);
+                    // if(seeMoreRecBtn.clicked == true || submitButtonEl.clicked == true){
+                    //     createSeeMoreOrSearchRecipe(recipedata);
+                        seeMoreRecBtn.addEventListener('click', () =>
+                    createSeeMoreOrSearchRecipe(recipedata));
+                    submitButtonEl.addEventListener('click', () =>
+                    createSeeMoreOrSearchRecipe(recipedata));
+            
+                      suggestedRecipe(recipedata);  
+                    
+                    
                 })
             }
         })
@@ -79,6 +92,20 @@ function suggestedRecipe(data) {
     var recipeTable = '';
     
     for(var i=0; i<4;i++){
+        var item = data.hits[i];
+        var recipeName = item.recipe.label;
+        var recipeImage = item.recipe.image;
+        var cookYield = item.recipe.yield;
+        recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' +recipeName +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
+    }
+    recipeTableBody.innerHTML = recipeTable;
+}
+
+function createSeeMoreOrSearchRecipe(data){
+    $('#videoContainer').css('display', 'none');
+    var recipeTable = '';
+    console.log(data);
+    for(var i=0; i<8;i++){
         var item = data.hits[i];
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
@@ -108,6 +135,7 @@ function Getrestaurants(lat, lon) {
 
 // Finds restaurants based on zipcode search
 function Ziprestaurants(zipcode) {
+    
     fetch('https://api.documenu.com/v2/restaurants/zip_code/'+zipcode+'?key=5162cc5a0a88bba9f4483c32d07d87f7&size=5')
     .then(response => {
       return response.json();
@@ -121,18 +149,24 @@ function Ziprestaurants(zipcode) {
 
 // Assigns geolocation variables calls API function
 function success(pos) {
+    
     let latitude = pos.coords.latitude;
-    console.log(latitude);
     let longitude = pos.coords.longitude;
-    console.log(longitude);
+    
     Getrestaurants(latitude, longitude);
+   
 }
 
 // If user doesn't share location show zip search on website
 function error() {
-    // display zipcode search if location not granted
-    zip = '53094';
-    Ziprestaurants(zip);
+    ziptxt.style.display='block';
+    zipinput.style.display='block';
+    restbtn.style.display='block';
+    document.getElementById("autolocat").style.display="none";
+    zip = '53094'
+    Ziprestaurants(zip)
+
+   
 }
 
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
@@ -140,7 +174,12 @@ function popRestList(data){
     console.log(data);
 
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
-    
+    // if(datarray.length == 0){
+    //     let warning = document.createElement('div');
+    //     warning.innerHTML='No results. Please try another area code'
+    //     document.getElementById('restsection').appendChild(warning)
+    //     return
+    // }
     // divsectionEL is the variable that represents the location in the HTML where the new div is created.  It is identified by #restsection
     // divEl is the variable associated with the new div element.  It contains the restaurant name
     // divElp is the variable associated with the p element containing the phone number that is attached to the div
