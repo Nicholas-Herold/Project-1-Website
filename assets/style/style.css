@@ -54,3 +54,7 @@ p.nobottommargin {
 .recipeTable {
 	width: 100% !important;
 }
+
+#moreRest {
+	display: none;
+}
