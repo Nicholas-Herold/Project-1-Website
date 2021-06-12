@@ -14,7 +14,6 @@ var seeMoreRecBtn = document.getElementById('seeMoreRecipes');
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
 // MAY CONSIDER ADDING 'SUGGESTED SEARCH TERMS' SUCH AS "INSTANT POT POTATOES", "INDIAN CHICKEN" OR "BEEF AND ONIONS"
-// I ADDED ADDITIONAL HEALTH RESTRICTION OPTIONS
 // Finds recipes based on search terms (#userInput) and varied restrictions
 function getRecipes() {
     console.log("getRecipes");
@@ -24,7 +23,6 @@ function getRecipes() {
     var gfIndicator = "";
     var wfIndicator = "";
     var pfIndicator = "";
-
 
     // Check for search terms
     if (searchTermsEl.value !== "") {
@@ -107,6 +105,7 @@ function Getrestaurants(lat, lon) {
         popRestList(data);
     });
 }
+
 // Finds restaurants based on zipcode search
 function Ziprestaurants(zipcode) {
     fetch('https://api.documenu.com/v2/restaurants/zip_code/'+zipcode+'?key=5162cc5a0a88bba9f4483c32d07d87f7&size=5')
