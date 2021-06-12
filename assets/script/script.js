@@ -201,12 +201,7 @@ function popRestList(data) {
     console.log(data);
 
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
-    // if(datarray.length == 0){
-    //     let warning = document.createElement('div');
-    //     warning.innerHTML='No results. Please try another area code'
-    //     document.getElementById('restsection').appendChild(warning)
-    //     return
-    // }
+
     // divsectionEL is the variable that represents the location in the HTML where the new div is created.  It is identified by #restsection
     // divEl is the variable associated with the new div element.  It contains the restaurant name
     // divElp is the variable associated with the p element containing the phone number that is attached to the div
