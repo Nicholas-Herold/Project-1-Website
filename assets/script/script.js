@@ -7,9 +7,10 @@ var gFreeEl = document.getElementById('gluten'); // This option is selected or n
 var wFreeEl = document.getElementById('wheat'); // This option is selected or not by the user
 var pFreeEl = document.getElementById('peanut'); // This option is selected or not by the user
 var submitButtonEl = document.querySelector("#searchButton"); // This is the Search Button
-var submitButtonE2 = document.getElementById('restbtn');
+var submitButtonE2 = document.getElementById('zipbtn');
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
+
 var recipeTableBody = document.getElementById('recipeList'); 
 // var moreRecBtns = document.querySelectorAll('.moreRecipesBtn');
 var seeMoreRecBtn = document.getElementById('moreRec');
@@ -134,8 +135,10 @@ function Getrestaurants(lat, lon) {
 }
 
 // Finds restaurants based on zipcode search
-function Ziprestaurants(zipcode) {
-    
+function Ziprestaurants() {
+    document.querySelector("#restsection").innerHTML=""
+    let zipcode = zipinput.value
+    console.log(zipcode)
     fetch('https://api.documenu.com/v2/restaurants/zip_code/'+zipcode+'?key=5162cc5a0a88bba9f4483c32d07d87f7&size=5')
     .then(response => {
       return response.json();
@@ -161,10 +164,8 @@ function success(pos) {
 function error() {
     ziptxt.style.display='block';
     zipinput.style.display='block';
-    restbtn.style.display='block';
+    zipbtn.style.display='block';
     document.getElementById("autolocat").style.display="none";
-    zip = '53094'
-    Ziprestaurants(zip)
 
    
 }
