@@ -180,8 +180,6 @@ function error() {
     zipinput.style.display='block';
     zipbtn.style.display='block';
     document.getElementById("autolocat").style.display="none";
-
-   
 }
 
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
@@ -201,18 +199,19 @@ function popRestList(data){
     // divEls is the variable associated with p element containing the street address that is attached to the div
     // divElc is the variable associated with p element containing the city, state, zip info that is attached to the div
     if (datarray.length == 0){
+        var divsectionEl = document.querySelector("#restsection");
+        divsectionEl.classList.remove("hide");
         document.querySelector("#restsection").innerHTML="No Results for this area"
         error();
     }
     datarray.forEach(index => {
 
-
-   
         console.log(datarray);
         var divEl = document.createElement("div");
         divEl.classList = "rName";
         divEl.innerHTML = index.restaurant_name;
         var divsectionEl = document.querySelector("#restsection");
+        divsectionEl.classList.remove("hide");
 
         var divElp = document.createElement("p");
         divElp.classList = "rPhone nobottommargin";
@@ -238,24 +237,8 @@ function renderTable(modal) {
     $(document).foundation();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // asks for user location when loading site
 navigator.geolocation.getCurrentPosition(success, error);
 
 
 submitButtonEl.addEventListener("click", getRecipes); // Listens for a click of the search button
-
-
-
-
