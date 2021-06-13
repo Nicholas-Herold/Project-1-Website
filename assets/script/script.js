@@ -111,7 +111,15 @@ function suggestedRecipe(data, numberOfListItems) {
         cuisine = item.recipe.cuisineType.toString();
         type = item.recipe.mealType.toString();
         diet = item.recipe.dietLabels.toString();
-        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p><a class="modal-link" href="' + link + '">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        let ingredients = item.recipe.ingredients;
+        let ingredientslist = '<div style="font-size:25px"> Ingredents Required';
+        ingredientslist += '<ul style="padding-left:30px">';
+        ingredients.forEach(element => {
+            ingredientslist+= '<li style="font-size:20px" >' + element.text + '</li>'
+             });
+        ingredientslist+= '</ul>';
+        ingredientslist+= '</div>';
+        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
         
         recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
@@ -153,7 +161,7 @@ function Getrestaurants(lat, lon) {
       return response.json();  
     })
     .then (data =>{
-        console.log(data);
+        // console.log(data);
         ////
         popRestList(data);
     });
@@ -162,14 +170,14 @@ function Getrestaurants(lat, lon) {
 // Finds restaurants based on zipcode search
 function Ziprestaurants() {
     document.querySelector("#restsection").innerHTML = ""
-    let zipcode = zipinput.value
-    console.log(zipcode)
+    let zipcode = zipinput.value;
+    // console.log(zipcode)
     fetch('https://api.documenu.com/v2/restaurants/zip_code/' + zipcode + '?key=5162cc5a0a88bba9f4483c32d07d87f7&size=10')
         .then(response => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             popRestList(data);
         });
 
@@ -196,7 +204,7 @@ function error() {
 
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
 function popRestList(data) {
-    console.log(data);
+    // console.log(data);
     var divsectionEl = document.querySelector("#restsection");
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
 
