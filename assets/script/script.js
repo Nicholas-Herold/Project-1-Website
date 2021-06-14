@@ -161,7 +161,7 @@ function Getrestaurants(lat, lon) {
       return response.json();  
     })
     .then (data =>{
-        console.log(data);
+        // console.log(data);
         ////
         popRestList(data);
     });
@@ -170,6 +170,7 @@ function Getrestaurants(lat, lon) {
 // Finds restaurants based on zipcode search
 function Ziprestaurants() {
     document.querySelector("#restsection").innerHTML = ""
+
     let zipcode = zipinput.value
     console.log(zipcode)
     fetch('https://api.documenu.com/v2/restaurants/zip_code/' + zipcode + '?key='+apiKeyDocuMenu+'&size=10')
@@ -177,7 +178,7 @@ function Ziprestaurants() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             popRestList(data);
         });
 
@@ -204,7 +205,7 @@ function error() {
 
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
 function popRestList(data) {
-    console.log(data);
+    // console.log(data);
     var divsectionEl = document.querySelector("#restsection");
     var datarray = data.data; // Data is returned as an object.  This pulls out the data array from the object called data.
 
@@ -216,8 +217,8 @@ function popRestList(data) {
     //divEla is the variable associated with p element containing restaurant website
     if (datarray.length == 0){
         divsectionEl.classList.remove("hide");
-        document.querySelector("#restsection").innerHTML="No Results for this area"
-        return;
+        divsectionEl.innerHTML="No Results for this area";
+        return
     }
 
 
