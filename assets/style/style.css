@@ -17,6 +17,11 @@
 	height: 100%;
 }
 
+.responsive-embed {
+	display: flex;
+	justify-content: center;
+}
+
 .borderControl {
 	border: 2px var(--blue) solid;
 	padding: 3px;

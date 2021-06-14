@@ -22,8 +22,10 @@ var displayMoreRecipes = 10;
 var displayRestaurants = 5;
 
 //Input personal api info for sites
-var apiIDEdamam = 'e60d435c';
-var apiKeyEdamam = '18c34531a5ee1f4b51fad57248de2882';
+var apiIDEdamam = '64678b5a';
+//'e60d435c';
+var apiKeyEdamam = 'a6ff725866ecd49b95adf40a798e58fb';
+//'18c34531a5ee1f4b51fad57248de2882';
 var apiKeyDocuMenu = 'f4c9cffa5ed59efeb8865bb585d84265';
 //orig key and id for Edamam '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb'
 //orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
@@ -107,10 +109,18 @@ function suggestedRecipe(data, numberOfListItems) {
         var recipeImage = item.recipe.image;
         var cookYield = item.recipe.yield;
 
+        if(item.recipe.url != null && item.recipe.url != 'undefined'){
         link = item.recipe.url.toString();
+        }
+        if(item.recipe.cuisineType != null && item.recipe.cuisineType != 'undefined'){
         cuisine = item.recipe.cuisineType.toString();
+        }
+        if(item.recipe.mealType != null && item.recipe.mealType != 'undefined'){
         type = item.recipe.mealType.toString();
+        }
+        if(item.recipe.dietLabels != null && item.recipe.dietLabels != 'undefined'){
         diet = item.recipe.dietLabels.toString();
+        }
         let ingredients = item.recipe.ingredients;
         let ingredientslist = '<div style="font-size:25px"> Ingredents Required';
         ingredientslist += '<ul style="padding-left:30px">';
@@ -189,7 +199,6 @@ function success(pos) {
 
     let latitude = pos.coords.latitude;
     let longitude = pos.coords.longitude;
-
     Getrestaurants(latitude, longitude);
 
 }
@@ -200,7 +209,6 @@ function error() {
     zipinput.style.display='block';
     zipbtn.style.display='block';
     document.getElementById("autolocat").style.display="none";
-
 }
 
 // This function uses the Restaurant API to create a list <divs> of 5 local restaurants
@@ -256,23 +264,24 @@ function popRestList(data) {
         divsectionEl.appendChild(divEl);
     }
     // if (displayRestaurants < datarray.length) {
-    //     createSeeMoreBtn(data);
+    //     createSeeMoreBtn(data, divsectionEl);
     //     }
     
 } // end of popRestList ()
 
-// function createSeeMoreBtn(data) {
+// function createSeeMoreBtn(data, divsectionEl) {
 //     var SeeMoreBtn = document.createElement('button');
 //     SeeMoreBtn.classList = 'button';
 //     SeeMoreBtn.textContent = 'See More +';
 //     SeeMoreBtn.type = 'button';
 //     divsectionEl.appendChild(SeeMoreBtn);
-//     createSeeMoreBtn.click(seeMoreRestClick(data));
+//     SeeMoreBtn.addEventListener('click', seeMoreRestClick(data));
 // }
 
 // function seeMoreRestClick(data){
-//     displayRestaurants += 5;
-//     popRestList(data);
+//     // displayRestaurants += 5;
+//     // popRestList(data);
+//     console.log('within btn click');
 // }
 
 function renderTable(modal) {
