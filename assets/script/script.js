@@ -24,7 +24,7 @@ var displayRestaurants = 5;
 //Input personal api info for sites
 var apiIDEdamam = 'e60d435c';
 var apiKeyEdamam = '18c34531a5ee1f4b51fad57248de2882';
-var apiKeyDocuMenu = 'a048f58582824f51ac9c1b6b4e500d9a';
+var apiKeyDocuMenu = 'f4c9cffa5ed59efeb8865bb585d84265';
 //orig key and id for Edamam '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb'
 //orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
 
@@ -217,7 +217,7 @@ function popRestList(data) {
     if (datarray.length == 0){
         divsectionEl.classList.remove("hide");
         document.querySelector("#restsection").innerHTML="No Results for this area"
-        error();
+        return;
     }
 
 
