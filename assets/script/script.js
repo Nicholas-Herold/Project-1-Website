@@ -81,7 +81,7 @@ function getRecipes() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (recipedata) {
-                    // console.log(recipedata);
+                    console.log(recipedata);
                     seeMoreRecBtn.addEventListener('click', () =>
                         createSeeMoreRecipeList(recipedata));
                     submitButtonEl.addEventListener('click', function () {
