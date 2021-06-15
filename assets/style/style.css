@@ -68,7 +68,8 @@ p.nobottommargin {
 	display: none;
 }
 
-.recipe-modal {
+.recipemodal {
+	background-color: coral;
 	display: flex;
 	align-items: center;
 	flex-direction: column;

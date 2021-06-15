@@ -108,6 +108,7 @@ function suggestedRecipe(data, numberOfListItems) {
         var recipeName = item.recipe.label;
         var recipeImage = item.recipe.image;
         var cookYield = item.recipe.yield;
+        uriModal = item.recipe.uri.toString();
 
         if(item.recipe.url != null && item.recipe.url != 'undefined'){
         link = item.recipe.url.toString();
@@ -129,7 +130,7 @@ function suggestedRecipe(data, numberOfListItems) {
              });
         ingredientslist+= '</ul>';
         ingredientslist+= '</div>';
-        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipe-modal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipemodal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a><button type="button" class="button" value="' + uriModal + '">Add to Favorites &#9733</button></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
         
         recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
@@ -284,6 +285,7 @@ function popRestList(data) {
 //     console.log('within btn click');
 // }
 
+// Function for reinitializing foundation
 function renderTable(modal) {
     $('#recipeList').html(modal);
     $(document).foundation();
