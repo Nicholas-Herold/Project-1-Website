@@ -306,7 +306,8 @@ function addfav(id,name){
     console.log(favcheck)
     // if(favcheck == -1){
     
-    recipefavorites.push(recipeobj)
+    recipefavorites.push (recipeobj)
+    console.log (recipeobj)
     console.log(recipefavorites)
     localStorage.setItem("favs",JSON.stringify(recipefavorites));
 }
