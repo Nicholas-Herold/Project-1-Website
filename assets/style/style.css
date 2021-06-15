@@ -60,10 +60,9 @@ p.nobottommargin {
 	width: 100% !important;
 }
 
-
 #moreRest {
 	display: none;
-
+}
 .hide {
 	display: none;
 }
@@ -73,9 +72,8 @@ p.nobottommargin {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-
 }
 .modal-image {
 	max-width: 40%;
-  	height: auto;
+	height: auto;
 }
