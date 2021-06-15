@@ -302,14 +302,14 @@ function addfav(id,name){
         recid: recipeid,
     }
         
-    let favcheck = recipefavorites.findIndex(dat=>dat=recipeid)
+    let favcheck = recipefavorites.findIndex(({recid})=>recid === recipeid)
     console.log(favcheck)
-    // if(favcheck == -1){
-    
-    recipefavorites.push (recipeobj)
+    if(favcheck === -1){
+    recipefavorites.unshift (recipeobj)
+    recipefavorites.splice(5);
     console.log (recipeobj)
     console.log(recipefavorites)
-    localStorage.setItem("favs",JSON.stringify(recipefavorites));
+    localStorage.setItem("favs",JSON.stringify(recipefavorites));}
 }
 
 // asks for user location when loading site
