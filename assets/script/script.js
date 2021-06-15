@@ -130,7 +130,7 @@ function suggestedRecipe(data, numberOfListItems) {
              });
         ingredientslist+= '</ul>';
         ingredientslist+= '</div>';
-        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipemodal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a><button type="button" class="button favbtn" onclick= "addfav(value)" value="' + uriModal + '">Add to Favorites &#9733</button></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipemodal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a><button type="button" name="'+recipeName+'" class="button favbtn" onclick= "addfav(value,name)" value="' + uriModal + '">Add to Favorites &#9733</button></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
         
         recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
@@ -291,14 +291,22 @@ function renderTable(modal) {
     $(document).foundation();
 }
 
-function addfav(id){
+function addfav(id,name){
     console.log('hello')
     let recipeid = id.split('_').pop();
+    console.log(name)
     console.log(recipeid)
+    let names =name;
+    var recipeobj = {
+        recname: names,
+        recid: recipeid,
+    }
+        
     let favcheck = recipefavorites.findIndex(dat=>dat=recipeid)
     console.log(favcheck)
-    if(favcheck == -1)
-    recipefavorites.push(recipeid)
+    // if(favcheck == -1){
+    
+    recipefavorites.push(recipeobj)
     console.log(recipefavorites)
     localStorage.setItem("favs",JSON.stringify(recipefavorites));
 }
