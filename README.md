@@ -25,7 +25,7 @@ As a user
 I WANT suggestions for a meal
 SO THAT I can plan accordingly
 
-<img src="assets/images/MainWebpage.png" alt="Main Webpage"/>
+<img src="./assets/images/MainWebpage.png" alt="Main Webpage"/>
 
 <br><br>
 GIVEN a foodie dashboard with form inputs<br>
