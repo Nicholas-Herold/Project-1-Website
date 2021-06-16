@@ -25,20 +25,20 @@ As a user
 I WANT suggestions for a meal
 SO THAT I can plan accordingly
 
-![Main Webpage](assets/images/MainWebpage.png)
+![Main Webpage](assets/images/MainWebpage.PNG)
 
 <br><br>
 GIVEN a foodie dashboard with form inputs<br>
 WHEN I search for an ingredient, dietary restriction, and/or cooking method<br>
 THEN I am presented with recipe suggestions meeting that criteria<br>
 
-![Recipe Search Criteria](assets/images/recipeSearchItems&Criteria.png)
+![Recipe Search Criteria](assets/images/recipeSearchItems&Criteria.PNG)
 
 <br><br>
 WHEN I select a recipe<br>
 THEN I am presented with pop-up containing a picture of the recipe and a link to the recipe card located on another site<br>
 
-![Recipe Popup](assets/images/recipePopUp.png)
+![Recipe Popup](assets/images/recipePopUp.PNG)
 
 <br><br>
 WHEN I find a recipe I like<br>
@@ -54,23 +54,23 @@ WHEN I allow the application to know my location<br>
 <br>
 THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
 
-![Restaurants](assets/images/locationAllowedRest.png)
+![Restaurants](assets/images/locationAllowedRest.PNG)
 
 <br><br>
 WHEN I deny the interface permission to know my location<br>
 
-![Block Location](assets/images/blockLocation.png)
+![Block Location](assets/images/blockLocation.PNG)
 
 <br>
 THEN no restaurants are displayed<br>
 
-![No Results Found](assets/images/blockLocationResult.png)
+![No Results Found](assets/images/blockLocationResult.PNG)
 
 <br><br>
 WHEN I enter a specific zip code<br>
 THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
 
-![Restaurants near ZipCode](assets/images/zipcodeRest.png)
+![Restaurants near ZipCode](assets/images/zipcodeRest.PNG)
 
 ## Credits
 Contributors
