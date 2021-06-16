@@ -76,7 +76,7 @@ function getRecipes() {
         pfIndicator = "&health=peanut-free";
     }
 
-    var apiRecUrl = 'http://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=' + apiIDEdamam+ '&app_key=' + apiKeyEdamam + '&from=0&to=30&imageSize=THUMBNAIL';
+    var apiRecUrl = 'https://api.edamam.com/search?' + stIndicator + dfIndicator + efIndicator + gfIndicator + wfIndicator + pfIndicator + '&app_id=' + apiIDEdamam+ '&app_key=' + apiKeyEdamam + '&from=0&to=30&imageSize=THUMBNAIL';
     console.log(apiRecUrl);
     fetch(apiRecUrl)
         .then(function (response) {
