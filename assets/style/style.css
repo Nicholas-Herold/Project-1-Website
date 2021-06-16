@@ -17,6 +17,10 @@
 	height: 100%;
 }
 
+.topPadding {
+	padding-top: 15px;
+}
+
 .responsive-embed {
 	display: flex;
 	justify-content: center;

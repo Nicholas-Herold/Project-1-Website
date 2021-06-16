@@ -31,7 +31,6 @@ var apiKeyDocuMenu = 'f4c9cffa5ed59efeb8865bb585d84265';
 //orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
 
 // THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
-// MAY CONSIDER ADDING 'SUGGESTED SEARCH TERMS' SUCH AS "INSTANT POT POTATOES", "INDIAN CHICKEN" OR "BEEF AND ONIONS"
 // Finds recipes based on search terms (#userInput) and varied restrictions
 function getRecipes() {
     console.log("getRecipes");
@@ -130,7 +129,7 @@ function suggestedRecipe(data, numberOfListItems) {
              });
         ingredientslist+= '</ul>';
         ingredientslist+= '</div>';
-        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipemodal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type + '</p><p>Cuisine type: ' + cuisine + '</p><p>Diet: ' + diet + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a><button type="button" name="'+recipeName+'" class="button favbtn" onclick= "addfav(value,name)" value="' + uriModal + '">Add to Favorites &#9733</button></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
+        searchModal = '<p><button class="button" data-open="modal' + i + '">' + recipeName + '</button></p><div class="small reveal" id="modal' + i + '" data-reveal><div class="recipemodal"><h1 class="recipe-title">' + recipeName + '</h1><img class="modal-image" src="' + recipeImage + '" alt=""><p>Meal type: ' + type.toUpperCase() + '</p><p>Cuisine type: ' + cuisine.toUpperCase() + '</p><p>Diet: ' + diet.toUpperCase() + '</p>'+ingredientslist+'<a class="modal-link" href="' + link + '">Link to recipe</a><button type="button" name="'+recipeName+'" class="button favbtn" onclick= "addfav(value,name)" value="' + uriModal + '">Add to Favorites &#9733</button></div><button class="close-button" data-close aria-label="Close reveal" type="button"><span aria-hidden="true">&times;</span></button></div>';
         
         recipeTable += '<tr><td><img src="' +recipeImage + '"/></td><td><h3>' + searchModal +'</h3>Number of Servings: '+ cookYield +'</td></tr>';
     }
@@ -172,8 +171,6 @@ function Getrestaurants(lat, lon) {
       return response.json();  
     })
     .then (data =>{
-        // console.log(data);
-        ////
         popRestList(data);
     });
 }
@@ -189,7 +186,6 @@ function Ziprestaurants() {
             return response.json();
         })
         .then(data => {
-            // console.log(data);
             popRestList(data);
         });
 
@@ -227,9 +223,9 @@ function popRestList(data) {
     if (datarray.length == 0){
         divsectionEl.classList.remove("hide");
         divsectionEl.innerHTML="No Results for this area";
+        error();
         return
     }
-
 
     divsectionEl.innerHTML = '';
     for (var i = 0; i < displayRestaurants; i++) {
@@ -238,7 +234,6 @@ function popRestList(data) {
         divEl.classList = "rName";
         divEl.innerHTML = datarray[i].restaurant_name;
         divsectionEl.classList.remove("hide");
-
 
         var divElp = document.createElement("p");
         divElp.classList = "rPhone nobottommargin";
