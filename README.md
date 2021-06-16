@@ -2,10 +2,14 @@
 
 ## Description
 
-Motivation for this project came from Raemarie's daughter who has many dietary restrictions and struggles to find recipes that suit her needs. We built this project as an easy resource for users to find meals that fit the criteria they provide. Throughout the project we learned how to utilize web APIs to get and supply our site with information, ranging from recipes to restaurants in in the user's area. As a team we also learned how to use GitHub branches and how to use the forking proces.  We also learned how to use a new styling platform called Zurb Foundation/Foundation for Sites.
+Motivation for this project came from Raemarie's daughter who has many dietary restrictions and struggles to find recipes that suit her needs. We built this project as an easy resource for users to find meals that fit the criteria they provide. Throughout the project we learned how to utilize web APIs to get and supply our site with information, ranging from recipes to restaurants in in the user's area. As a team we also learned how to use GitHub branches and how to use the forking proces. We also learned how to use a new styling platform called Zurb Foundation/Foundation for Sites.
+
+## Deployed link
+
+    https://nicholas-herold.github.io/Project-1-Website/
 
 ## Installation
-   
+
     Option 1: Access the site by utilizing the GitHub pages link provided
 
     Option 2: Get files from the GitHub Repository
@@ -44,7 +48,6 @@ THEN I am presented with pop-up containing a picture of the recipe and a link to
 WHEN I find a recipe I like<br>
 THEN I am able to save a recipe to my favorites<br>
 
-
 <br><br>
 WHEN I load or refresh the application, it asks permission to know my location<br>
 WHEN I allow the application to know my location<br>
@@ -73,15 +76,16 @@ THEN I am presented with a list of local restaurants including their phone numbe
 ![Restaurants near ZipCode](assets/images/zipcodeRest.PNG)
 
 ## Credits
+
 Contributors
 
-        Tyler Wheeler can be found at
+        Tyler Wheeler can be found at tylerwheeler92@gmail.com
 
         Raemarie Oatman can be found at raemarie.oatman@gmail.com
 
-        Celina Lind can be found at
+        Celina Lind can be found at clind323@gmail.com
 
-        Nicholas Herold can be found at
+        Nicholas Herold can be found at nherold86@gmail.com
 
 Third Party APIs
 
@@ -92,7 +96,6 @@ Third Party APIs
 Styling Documentation
 
         Zurb Foundation => https://get.foundation/sites.html
-
 
 ## License
 
