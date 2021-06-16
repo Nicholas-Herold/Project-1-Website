@@ -25,19 +25,20 @@ As a user
 I WANT suggestions for a meal
 SO THAT I can plan accordingly
 
-<img src="./assets/images/MainWebpage.png" alt="Main Webpage"/>
+![Main Webpage](assets/images/MainWebpage.png)
 
 <br><br>
 GIVEN a foodie dashboard with form inputs<br>
 WHEN I search for an ingredient, dietary restriction, and/or cooking method<br>
 THEN I am presented with recipe suggestions meeting that criteria<br>
 
-<img src="assets/images/recipeSearchItems&Criteria.png" alt="Main Webpage"/>
+![Recipe Search Criteria](assets/images/recipeSearchItems&Criteria.png)
 
 <br><br>
 WHEN I select a recipe<br>
 THEN I am presented with pop-up containing a picture of the recipe and a link to the recipe card located on another site<br>
-<img src="assets/images/recipePopUp.png" alt="Recipe Info"/>
+
+![Recipe Popup](assets/images/recipePopUp.png)
 
 <br><br>
 WHEN I find a recipe I like<br>
@@ -47,24 +48,29 @@ THEN I am able to save a recipe to my favorites<br>
 <br><br>
 WHEN I load or refresh the application, it asks permission to know my location<br>
 WHEN I allow the application to know my location<br>
-<img src="assets/images/AllowLocation.png" alt="Location Pop-up"/>
+
+![Allow Location](assets/images/AllowLocation.png)
 
 <br>
 THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
-<img src="assets/images/locationAllowedRest.png" alt="Restaurants near you"/>
+
+![Restaurants](assets/images/locationAllowedRest.png)
 
 <br><br>
 WHEN I deny the interface permission to know my location<br>
-<img src="assets/images/blockLocation.png" alt="Location Blocked"/><br>
+
+![Block Location](assets/images/blockLocation.png)
 
 <br>
 THEN no restaurants are displayed<br>
-<img src="assets/images/blockLocationResult.png" alt="No Restaurants Displayed"/>
+
+![No Results Found](assets/images/blockLocationResult.png)
 
 <br><br>
 WHEN I enter a specific zip code<br>
 THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
-<img src="assets/images/zipcodeRest.png" alt="Restaurants near zipcode provided"/>
+
+![Restaurants near ZipCode](assets/images/zipcodeRest.png)
 
 ## Credits
 Contributors
