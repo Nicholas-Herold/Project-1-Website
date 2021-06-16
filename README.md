@@ -49,7 +49,7 @@ THEN I am able to save a recipe to my favorites<br>
 WHEN I load or refresh the application, it asks permission to know my location<br>
 WHEN I allow the application to know my location<br>
 
-![Allow Location](assets/images/AllowLocation.png)
+![Allow Location](assets/images/AllowLocation.PNG)
 
 <br>
 THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
