@@ -2,28 +2,22 @@
 
 ## Description
 
-Motivation for this project came from Raemarie's daughter who has many dietary restrictions and personally struggles finding recipes that suit her needs. We built this project as an easy resource for users to find meals that fit the criteria they provide. Throughout the project we learned how to utilize web APIs to get and supply our site with information, ranging from recipes to restaurants in users area. As a team we also learned how to use GitHub branches and forking process, as well as learning a new styling platform called Zurb Foundation/Foundation for Sites.
+Motivation for this project came from Raemarie's daughter who has many dietary restrictions and struggles to find recipes that suit her needs. We built this project as an easy resource for users to find meals that fit the criteria they provide. Throughout the project we learned how to utilize web APIs to get and supply our site with information, ranging from recipes to restaurants in in the user's area. As a team we also learned how to use GitHub branches and how to use the forking proces.  We also learned how to use a new styling platform called Zurb Foundation/Foundation for Sites.
 
 ## Installation
+   
+    Option 1: Access the site by utilizing the GitHub pages link provided
 
+    Option 2: Get files from the GitHub Repository
+    1) Initiate the local repository on your device:
+        In terminal: navigate to the designated directory on your device.  Then use the command 'git init'
 
-    
-    
-    Option 1:
-        Access the site by utilizing the GitHub pages link provided
-
-
-    Option 2:
-        Get files from the GitHub Repository
-    1) Initiate local repository on your device
-            go to designated file you are wanting to use and type git init into your terminal
     2) Clone main branch to your device
-            In terminal: 
-            $ git clone repositoryHTTPSlinkcopied
+        In terminal: issue the command '$ git clone repositoryHTTPSlinkcopied'
+
     3) Open code with IDE (Visual Studio, etc.)
 
     4) Open index.html file on default browser
-
 
 ## Usage
 
@@ -33,30 +27,43 @@ SO THAT I can plan accordingly
 
 <img src="assets/images/MainWebpage.png" alt="Main Webpage"/>
 
-GIVEN a foodie dashboard with form inputs
-WHEN I search for an ingredient, dietary restriction, and/or cooking method
-THEN I am presented with recipe suggestions meeting that criteria
+<br><br>
+GIVEN a foodie dashboard with form inputs<br>
+WHEN I search for an ingredient, dietary restriction, and/or cooking method<br>
+THEN I am presented with recipe suggestions meeting that criteria<br>
 
 <img src="assets/images/recipeSearchItems&Criteria.png" alt="Main Webpage"/>
 
-WHEN I select a recipe
-THEN I am presented with pop-up containing a picture of the recipe and a link to the recipe card located on another site
+<br><br>
+WHEN I select a recipe<br>
+THEN I am presented with pop-up containing a picture of the recipe and a link to the recipe card located on another site<br>
 <img src="assets/images/recipePopUp.png" alt="Recipe Info"/>
 
-WHEN I find a recipe I like
-THEN I am able to save a recipe to my favorites
+<br><br>
+WHEN I find a recipe I like<br>
+THEN I am able to save a recipe to my favorites<br>
 
-WHEN I load or refresh the application, it asks permission to know my location
-WHEN I allow the application to know my location
+
+<br><br>
+WHEN I load or refresh the application, it asks permission to know my location<br>
+WHEN I allow the application to know my location<br>
 <img src="assets/images/AllowLocation.png" alt="Location Pop-up"/>
-THEN I am presented with a list of local restaurants including their phone numbers and addresses
+
+<br>
+THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
 <img src="assets/images/locationAllowedRest.png" alt="Restaurants near you"/>
-WHEN I deny the interface permission to know my location
-<img src="assets/images/blockLocation.png" alt="Location Blocked"/>
-THEN no restaurants are displayed
+
+<br><br>
+WHEN I deny the interface permission to know my location<br>
+<img src="assets/images/blockLocation.png" alt="Location Blocked"/><br>
+
+<br>
+THEN no restaurants are displayed<br>
 <img src="assets/images/blockLocationResult.png" alt="No Restaurants Displayed"/>
-WHEN I enter a specific zip code
-THEN I am presented with a list of local restaurants including their phone numbers and addresses
+
+<br><br>
+WHEN I enter a specific zip code<br>
+THEN I am presented with a list of local restaurants including their phone numbers and addresses<br>
 <img src="assets/images/zipcodeRest.png" alt="Restaurants near zipcode provided"/>
 
 ## Credits
@@ -64,7 +71,7 @@ Contributors
 
         Tyler Wheeler can be found at
 
-        Raemarie Oatman can be found at
+        Raemarie Oatman can be found at raemarie.oatman@gmail.com
 
         Celina Lind can be found at
 
