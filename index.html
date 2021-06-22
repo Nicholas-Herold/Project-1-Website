@@ -24,24 +24,43 @@
 			<div class="columns medium-5 title">
 				<h1>Good Eats</h1>
 			</div>
-
-			<div class="columns medium-6">
-				<div class="row">
-					<div class="colums search-bar">
-						<input type="text" id="userInput" placeholder="Search" />
-						<button
-							type="button"
-							id="searchButton"
-							class="button moreRecipesBtn"
-						>
-							Search
-						</button>
-					</div>
-
-				</div>
+			
+			<div class="columns medium-6 search-bar">
+				<input type="text" id="userInput" placeholder="Search" />
 			</div>
+
+			<div class="row text">
+
+				<div class="columns medium-6">
+				</div>
+
+				<div class="columns medium-6">
+					<!-- Search button -->
+					<button
+						type="button"
+						id="searchButton"
+						class="button moreRecipesBtn navbutton"
+						> Search
+					</button>
+
+					<!-- Favorite button -->
+					<button
+						type="button"
+						id="favoriteButton"
+						class="button moreRecipesBtn navbutton"
+						> Favorites
+					</button>
+				</div>
+
+			</div>
+
+
+
+					
+				
+
 			<div class="row">
-				<div class="colums text-right
+				<div class="columns text-right
 				">
 					<input id="gluten" type="checkbox" name="" value="gluten" /><label for="gluten">Gluten Free</label>
 					<input id="dairy" type="checkbox" name="" value="dairy" /><label for="dairy">Dairy Free</label>

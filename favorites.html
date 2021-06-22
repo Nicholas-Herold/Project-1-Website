@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Good Eats</title>
+		<link rel="stylesheet" href="./assets/style/style.css" />
+		<link
+			rel="stylesheet"
+			href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
+		/>
+		<script src="https://developer.edamam.com/attribution/badge.js"></script>
+	</head>
+
+	<body>
+		<div class="row topPadding">
+
+			<div class="columns medium-1">
+				<img src="./assets/images/good_eats.png" alt="Empty plate and silverware" style="width: 100px"> 
+			</div>
+
+			<div class="columns medium-5 title">
+				<h1>Good Eats</h1>
+			</div>
+			
+			<div class="columns medium-6">
+				<!-- Search button -->
+				<button
+					type="button"
+					id="homeButton"
+					class="button moreRecipesBtn navbutton"
+					> Home
+				</button>
+
+			</div>
+		</div>
+	
+  
+	<!-- main body of site -->
+	
+
+		<div id="pageContainer">
+			<div class="row top-padding">
+				<div class="columns medium-12">
+					<h2 id='recipeListHeader'>Favorite Recipes</h2>
+				</div>
+			</div>
+
+			<div class="row top-padding">
+				<div class="columns medium-12">
+					<ul id="favoriteslist"></ul>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			<!-- footer including recipe api attribute -->
+			<footer class="columns medium-12" id="footer">
+				<hr style="height: 2px; background-color: rgba(13, 147, 209, 0.486)" />
+				<div id="edamam-badge" data-color="white"></div>
+			</footer>
+			
+		</div>
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+		<script> $(document).foundation(); </script>
+		<script src="./assets/script/favscript.js"></script>
+
+	</body>
+</html>
+
