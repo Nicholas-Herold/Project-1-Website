@@ -7,30 +7,33 @@ var gFreeEl = document.getElementById('gluten'); // This option is selected or n
 var wFreeEl = document.getElementById('wheat'); // This option is selected or not by the user
 var pFreeEl = document.getElementById('peanut'); // This option is selected or not by the user
 var submitButtonEl = document.querySelector("#searchButton"); // This is the Search Button
+var favoriteButtonEl = document.querySelector("#favoriteButton");
 var submitButtonE2 = document.getElementById('zipbtn');
+
 var ziptxt = document.getElementById('ziptxt');
 var zipinput = document.getElementById('zipinput');
 var ziperror = "";
 var recipefavorites = JSON.parse(localStorage.getItem('favs'))||[];
-
 var recipeTableBody = document.getElementById('recipeList');
 var seeMoreRecBtn = document.getElementById('moreRec');
 var recListHeader = document.getElementById('recipeListHeader');
 var videoContainer = $('#videoContainer');
 var displayMoreRecipes = 10;
-
 var displayRestaurants = 5;
 
+// (The api keys could be put in a glogal .js file.  They are also located in script.js)
 //Input personal api info for sites
 var apiIDEdamam = '64678b5a';
 //'e60d435c';
 var apiKeyEdamam = 'a6ff725866ecd49b95adf40a798e58fb';
 //'18c34531a5ee1f4b51fad57248de2882';
-var apiKeyDocuMenu = 'f4c9cffa5ed59efeb8865bb585d84265';
+var apiKeyDocuMenu = '482dba2d80d289f9b05593b779efcd47';
 //orig key and id for Edamam '&app_id=64678b5a&app_key=a6ff725866ecd49b95adf40a798e58fb'
 //orig key for documenu key=5162cc5a0a88bba9f4483c32d07d87f7
 
-// THIS WILL RETURN TWO RECIPES "ON SEARCH".  TO CHANGE, EDIT API URL FROM "&to=2" TO &to='desired number of recipes'
+
+// FUNCTIONS //
+
 // Finds recipes based on search terms (#userInput) and varied restrictions
 function getRecipes() {
     console.log("getRecipes");
@@ -90,8 +93,6 @@ function getRecipes() {
                     });
 
                     suggestedRecipe(recipedata, 5);
-
-
                 })
             }
         })
@@ -99,7 +100,7 @@ function getRecipes() {
 
 //Create suggested recipe list
 function suggestedRecipe(data, numberOfListItems) {
-    // console.log(data.hits[0].recipe.cuisineType.toString());
+
     var recipeTable = '';
 
     for (var i = 0; i < numberOfListItems; i++) {
@@ -159,10 +160,6 @@ function createSearchRecipe(data) {
         createSeeMoreRecipeList(data));
 }
 
-//Run initial recipe API call
-getRecipes();
-
-
 // Function finds list of restaurants in the area based on lat and lon
 function Getrestaurants(lat, lon) {
 
@@ -193,7 +190,7 @@ function Ziprestaurants() {
 
 // Assigns geolocation variables calls API function
 function success(pos) {
-
+    console.log("pos_success")
     let latitude = pos.coords.latitude;
     let longitude = pos.coords.longitude;
     Getrestaurants(latitude, longitude);
@@ -202,6 +199,7 @@ function success(pos) {
 
 // If user doesn't share location show zip search on website
 function error() {
+    console.log("error");
     ziptxt.style.display='block';
     zipinput.style.display='block';
     zipbtn.style.display='block';
@@ -265,51 +263,49 @@ function popRestList(data) {
     
 } // end of popRestList ()
 
-// function createSeeMoreBtn(data, divsectionEl) {
-//     var SeeMoreBtn = document.createElement('button');
-//     SeeMoreBtn.classList = 'button';
-//     SeeMoreBtn.textContent = 'See More +';
-//     SeeMoreBtn.type = 'button';
-//     divsectionEl.appendChild(SeeMoreBtn);
-//     SeeMoreBtn.addEventListener('click', seeMoreRestClick(data));
-// }
-
-// function seeMoreRestClick(data){
-//     // displayRestaurants += 5;
-//     // popRestList(data);
-//     console.log('within btn click');
-// }
-
 // Function for reinitializing foundation
 function renderTable(modal) {
     $('#recipeList').html(modal);
     $(document).foundation();
 }
 
+// Store favorites to local storage
 function addfav(id,name){
-    console.log('hello')
     let recipeid = id.split('_').pop();
-    console.log(name)
-    console.log(recipeid)
-    let names =name;
+    let names = name;
+
     var recipeobj = {
         recname: names,
         recid: recipeid,
     }
         
     let favcheck = recipefavorites.findIndex(({recid})=>recid === recipeid)
-    console.log(favcheck)
+        console.log(favcheck)
+    
     if(favcheck === -1){
-    recipefavorites.unshift (recipeobj)
-    recipefavorites.splice(5);
-    console.log (recipeobj)
-    console.log(recipefavorites)
-    localStorage.setItem("favs",JSON.stringify(recipefavorites));}
+        recipefavorites.unshift (recipeobj)
+        recipefavorites.splice(5);
+        localStorage.setItem("favs",JSON.stringify(recipefavorites));}
 }
 
-// asks for user location when loading site
+// Opens new page which is loaded with favorite recipes from localStorage
+function favoritesPage(){
+    window.open("./favorites.html", target="_self");
+}
+
+
+// EXECUTION //
+
+//Run initial recipe API call
+getRecipes();
+
+// Asks for user location when loading site
 navigator.geolocation.getCurrentPosition(success, error);
 
+// Listens for a click of the search button
+submitButtonEl.addEventListener("click", getRecipes);
 
-submitButtonEl.addEventListener("click", getRecipes); // Listens for a click of the search button
+// Loads Favorites page
+favoriteButtonEl.addEventListener("click", favoritesPage);
+
 

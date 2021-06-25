@@ -67,6 +67,7 @@ p.nobottommargin {
 #moreRest {
 	display: none;
 }
+
 .hide {
 	display: none;
 }
@@ -79,4 +80,16 @@ p.nobottommargin {
 .modal-image {
 	max-width: 40%;
 	height: auto;
+}
+
+/* Styles the Search and Favorites Button */
+button.navbutton {
+	margin-left: 15px;
+	width: 20%;
+}
+
+/* Styles the recipe buttons on the Favorites page */
+button.favbutton1 {
+	width: 100%;
+	background-color: var(--blue);
 }
